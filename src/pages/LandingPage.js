@@ -7,28 +7,44 @@ function VerifyVisit() {
     const [currentPage, setCurrentPage] = useState('landingpage');
     const [isVerified, setIsVerified] = useState(false);
 
+    const [fName, setFName] = useState('');
+    const [lName, setLName] = useState('');
+    const [dob, setDob] = useState('');
     
     const handleClick = () => {
-        // Define what happens when the button is clicked
         console.log('Button clicked on Landing Page!');
+        console.log('First Name:', fName);
+        console.log('Last Name:', lName);
+        console.log('Date of Birth:', dob);
     };
 
       
     return (
       <div>
         <h1>"This is the Landing Page"</h1>
-        <p>Please enter information to verify your visit for today</p>
+        <p>Please enter the following details to verify your visit</p>
         <div className="py-1">
-            <TextField id="visittype" label="First Name" variant="filled" />
+            <TextField id="visittype" label="First Name" variant="filled"
+            value={fName}
+            onChange={(e) => setFName(e.target.value)}
+             />
         </div> 
         <div className="py-1">
-            <TextField id="lname" label="Last Name" variant="filled" />
+            <TextField id="lname" label="Last Name" variant="filled" 
+            value={lName}
+            onChange={(e) => setLName(e.target.value)}
+            />
         </div>
         <div className="py-1">
-            <TextField id="dob" label="Date of Birth" variant="filled" />
+            <TextField id="dob" label="Date of Birth" variant="filled" type="Date"
+            value={dob}
+            onChange={(e) => setDob(e.target.value)}
+            InputLabelProps={{
+                        shrink: true,}}
+            />
         </div> 
         <div>
-            <SubmitButton text="Verify Visit" onClick={handleClick}/>
+            <SubmitButton text="Verify Visit" onClick={handleClick} />
         </div>
 
       </div>
