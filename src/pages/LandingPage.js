@@ -12,10 +12,29 @@ function VerifyVisit() {
     const [dob, setDob] = useState('');
     
     const handleClick = () => {
-        console.log('Button clicked on Landing Page!');
-        console.log('First Name:', fName);
-        console.log('Last Name:', lName);
-        console.log('Date of Birth:', dob);
+        const data = {
+            fName: fName,
+            lName: lName,
+            dob: dob
+        };
+
+        fetch('http://127.0.0.1:5000/api/verify', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle response from Flask backend
+            console.log(data);
+        })
+        .catch(error => {
+            // Handle errors
+            console.error(error);
+        });
+
     };
 
       
