@@ -21,7 +21,7 @@ function VerifyVisit() {
         fetch('https://cptest-vip.utmck.edu:9443/dev/', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': '*/*'
             },
             body: JSON.stringify(data)
         })
