@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'ut-orange': '#f77f00',
+        'ut-orange': '#f77f00', 
       },
     },
   },
