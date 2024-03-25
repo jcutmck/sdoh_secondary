@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify, current_app
 
 verify_bp = Blueprint('verify', __name__)
 
-@verify_bp.route('/api/verify', methods=['POST'])
+@verify_bp.route('/api/verify', methods=['POST','GET'])
 
 def verify():
     data = request.json
