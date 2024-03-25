@@ -18,7 +18,7 @@ function VerifyVisit() {
             dob: dob
         };
 
-        fetch('http://127.0.0.1:5000/api/verify', {
+        fetch('https://cptest-vip.utmck.edu:9443/dev/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
