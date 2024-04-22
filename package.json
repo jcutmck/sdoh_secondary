@@ -45,7 +45,7 @@
     "tailwindcss": "^3.4.1"
   },
   "main": "index.js",
-  "repository": "https://github.com/jcutmck/utsdoh.git",
+  "repository": "https://dev.azure.com/UTMCKAppDev/SDOH/_git/UT_SDOH",
   "author": "jcutmck <jclutter@utmck.edu>",
   "license": "MIT"
 }
