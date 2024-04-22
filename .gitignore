@@ -25,7 +25,16 @@ yarn-error.log*
 # Byte-compiled / optimized Python files
 __pycache__/
 *.pyc
+*.pyo
 Lib/
 
 # Virtual environment
 venv/
+
+# PyInstaller
+dist/
+*.log
+*.spec
+
+# Miscellaneous
+.DS_Store
