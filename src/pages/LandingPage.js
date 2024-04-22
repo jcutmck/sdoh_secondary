@@ -1,41 +1,54 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SubmitButton } from '../components/Button';
 import { TextField } from '@mui/material';
 
 
 function VerifyVisit() {   
-    const [currentPage, setCurrentPage] = useState('landingpage');
-    const [isVerified, setIsVerified] = useState(false);
 
+    //const [currentPage, setCurrentPage] = useState('landingpage');
+    //const [isVerified, setIsVerified] = useState(false);
+    //const [failVerify, setFailVerify] = useState(false);
     const [fName, setFName] = useState('');
     const [lName, setLName] = useState('');
     const [dob, setDob] = useState('');
     
+    const navigate = useNavigate();
+
     const handleClick = () => {
         const data = {
-            fName: fName,
-            lName: lName,
+            firstName: fName,
+            lastName: lName,
             dob: dob
         };
 
-        fetch('https://cptest-vip.utmck.edu:9443/dev/', {
+        // local pyenv version:  fetch('http://127.0.0.1:5000/api/verify', {
+        //LOCAL TEST:  'Content-Type': 'application/json'
+      
+        // corepoint version:  fetch('https://cptest-vip.utmck.edu:9443/dev/', {
+        //COREPOINT TEST:  'Content-Type': '*/*'
+    
+        fetch('http://127.0.0.1:5000/api/verify', {
             method: 'POST',
             headers: {
-                'Content-Type': '*/*'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
         .then(response => response.json())
         .then(data => {
-            // Handle response from Flask backend
+            // Handle response to this from Flask backend, NOT THE FRONT-END!
             console.log(data);
+            if (data.redirectTo === '/success') {
+                navigate('/form'); // Redirect to the success page
+            }
         })
         .catch(error => {
             // Handle errors
             console.error(error);
         });
-
     };
+
 
       
     return (
