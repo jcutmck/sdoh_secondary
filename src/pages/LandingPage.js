@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SubmitButton } from '../components/Button';
 import { TextField } from '@mui/material';
@@ -27,8 +27,11 @@ function VerifyVisit() {
       
         // corepoint version:  fetch('https://cptest-vip.utmck.edu:9443/dev/', {
         //COREPOINT TEST:  'Content-Type': '*/*'
+
+        // UT Dev Server Version:  fetch('http://uhsvtsdohdapp01.utmck.edu:5000/', {
+        //COREPOINT TEST:  'Content-Type': 'application/json'
     
-        fetch('http://127.0.0.1:5000/api/verify', {
+        fetch('https://uhsvtsdohdapp01.utmck.edu:5000/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -37,10 +40,9 @@ function VerifyVisit() {
         })
         .then(response => response.json())
         .then(data => {
-            // Handle response to this from Flask backend, NOT THE FRONT-END!
             console.log(data);
             if (data.redirectTo === '/success') {
-                navigate('/form'); // Redirect to the success page
+                navigate('/form'); // Redirect to the Forms page
             }
         })
         .catch(error => {
