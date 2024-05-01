@@ -31,7 +31,7 @@ function VerifyVisit() {
         // UT Dev Server Version:  fetch('http://uhsvtsdohdapp01.utmck.edu:5000/', {
         //COREPOINT TEST:  'Content-Type': 'application/json'
     
-        fetch('https://uhsvtsdohdapp01.utmck.edu:5000/', {
+        fetch('https://uhsvtsdohdapp01.utmck.edu:5000/api/verify', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
