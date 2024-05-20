@@ -1,20 +1,19 @@
-import React, {useState, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useState} from 'react';
+//import { useNavigate } from 'react-router-dom';
 import { SubmitButton } from '../components/Button';
 import { TextField } from '@mui/material';
-
+import { getForm } from '../components/GetForm';
 
 function VerifyVisit() {   
 
     //const [currentPage, setCurrentPage] = useState('landingpage');
     //const [failVerify, setFailVerify] = useState(false);
-    const [isVerified, setIsVerified] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    //const [isVerified, setIsVerified] = useState(false);
     const [fName, setFName] = useState('');
     const [lName, setLName] = useState('');
     const [dob, setDob] = useState('');
     
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     const handleClick = () => {
         const data = {
@@ -43,7 +42,9 @@ function VerifyVisit() {
         .then(data => {
             console.log(data);
             if (data.redirectTo === '/success') {
-                setIsVerified(true);
+                getForm();
+                //setIsVerified(true);
+                //navigate('/form'); // Redirect to the Forms page
             }
         })
         .catch(error => {
@@ -52,28 +53,11 @@ function VerifyVisit() {
         });
     };
 
-    useEffect(() => {
-        window.addEventListener('load', () => {
-          setIsLoading(false);
-        });
-        return () => {
-          window.removeEventListener('load', () => {});
-        };
-      }, []);
 
-    useEffect(() => {
-        console.log('Verified Status: ', isVerified);
-        if(isVerified) {
-            // Navigate to fsform.js with values as state
-            navigate('/fsform', { state: { isVerified } }); 
-        }
-    }, [isVerified, navigate]);
-    
-     
+      
     return (
-
         <div>
-            <h1>"This is the Landing Page - v0.3"</h1>
+            <h1>"This is the Landing Page - v0.02"</h1>
             <p>Please enter the following details to verify your visit</p>
             <div className="py-1">
                 <TextField id="visittype" label="First Name" variant="filled"
