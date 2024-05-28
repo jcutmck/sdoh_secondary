@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
 import ResponsiveIframe from '../components/ResponsiveIfrm';
-//import sendDataToIframe from '../utilities/func-transmit';
+//import sendDataToIframe from '../utils/func-transmit';
 import '../resources/Minimal.css';
 
 function FormFill() {   

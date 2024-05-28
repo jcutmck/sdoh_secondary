@@ -73,7 +73,7 @@ function VerifyVisit() {
     return (
 
         <div>
-            <h1>"This is the Landing Page - v0.3"</h1>
+            <h1>"This is the Landing Page - v0.1"</h1>
             <p>Please enter the following details to verify your visit</p>
             <div className="py-1">
                 <TextField id="visittype" label="First Name" variant="filled"

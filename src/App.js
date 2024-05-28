@@ -1,11 +1,10 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
-import LandingPageALT from './pages/LandingPageALT';
+import LandingPageNEW from './pages/LandingPageNEW';
 import FstackForm from './pages/FstackForm';
-import FstackFormIframe from './pages/FstackFormIframe';
+//import FstackFormIframe from './pages/FstackFormIframe';
 import SdohForm from './pages/SdohForm';
-import Success from './pages/Success';
 //<Route path="/orderreq/:orderId" exact element={<PrintTemplate />} />
 //<Route path="/404" exact element={<NotFound />} />
 
@@ -16,10 +15,9 @@ function App() {
       <div className="App-body">
         <Router>
           <Routes>
-            <Route path="/" exact element={<LandingPage />} />
+            <Route path="/" exact element={<LandingPageNEW />} />
             <Route path="/utform" exact element={<SdohForm />} />
-            <Route path="/fsform" exact element={<FstackFormIframe />} />
-            <Route path="/success" exact element={<Success />} />
+            <Route path="/fsform" exact element={<FstackForm />} />
           </Routes>
         </Router>
       </div>
