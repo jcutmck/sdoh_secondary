@@ -10,11 +10,25 @@ class FormField {
   
 //Create InitialValues class and the constructor/object within
   class InitialValues {
-    constructor(mrn = '', fin = '', housingSecurity = '', foodSecurity = '') {
+    constructor(mrn = '', fin = '', housingSecurity = '', foodSecurity = '', housingCondition = '', foodAccess = '', healthcareAccess = '', utilitySecurity = '', childcareAccess = '', occupationAccess = '', educationAccess = '', financialSecurity = '', physicalSecurity = '', emotionalSecurity = '', safetySecurity = '', wellbeingSecurity = '', requestHelp = '') {
       this.mrn = mrn;
       this.fin = fin;
-      this.foodSecurity = foodSecurity;
       this.housingSecurity = housingSecurity;
+      this.foodSecurity = foodSecurity;
+      this.housingCondition = housingCondition;
+      this.foodAccess = foodAccess;
+      this.healthcareAccess = healthcareAccess;
+      this.utilitySecurity = utilitySecurity;
+      this.childcareAccess = childcareAccess;
+      this.occupationAccess = occupationAccess;
+      this.educationAccess = educationAccess;
+      this.financialSecurity = financialSecurity;
+      this.physicalSecurity = physicalSecurity;
+      this.emotionalSecurity = emotionalSecurity;
+      this.safetySecurity = safetySecurity;
+      this.wellbeingSecurity = wellbeingSecurity;
+      this.requestHelp = requestHelp;
+      
     }
   }
   
@@ -25,8 +39,8 @@ class FormField {
 
 
   const fields = [
-    new FormField('mrn', 'MRN', 'text'),
-    new FormField('fin', 'FIN', 'text'),
+    //new FormField('mrn', 'MRN', 'text'),
+    //new FormField('fin', 'FIN', 'text'),
     new FormField(
         'housingSecurity',
         'Are you worried or concerned that in the next two months you may not have stable housing that you own, rent, or stay in as a part of a household?',
