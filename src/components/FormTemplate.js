@@ -17,7 +17,7 @@ import '../resources/formStyles.css' ;
           <Form className="form-container">
             {fields.map((field, index) => {
               // Add logging to debug field structure
-              console.log(`Rendering field:`, field);
+              //console.log(`Rendering field:`, field);
 
               // Ensure the field object has a type property
               if (!field || !field.type) {

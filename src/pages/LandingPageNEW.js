@@ -25,13 +25,17 @@ function VerifyVisit() {
             dob: formatDate(values.dob),
         };
 
+        const sessionId = localStorage.getItem('session_id') || 'NaN';
+        
         try {
             const response = await fetch('https://uhsvtsdohdapp01.utmck.edu:5000/api/verify', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Session-ID': sessionId  // Add this if you need to send Session-ID
                 },
                 body: JSON.stringify(formattedValues),
+                credentials: 'include'  // Ensure cookies are included in the request
             });
 
             if (!response.ok) {
@@ -41,6 +45,7 @@ function VerifyVisit() {
             const data = await response.json();
             console.log(data);
             if (data.redirectTo === '/success') {
+                localStorage.setItem('session_id', data.session_id);
                 setIsVerified(true);
             }
         } catch (error) {
@@ -69,7 +74,7 @@ function VerifyVisit() {
 
     return (
         <div>
-            <h1>Visit Validation Form - v0.29</h1>
+            <h1>Visit Validation Form - v0.5</h1>
             <ReusableForm
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
