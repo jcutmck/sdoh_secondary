@@ -1,0 +1,30 @@
+/* formStyles.css */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px;
+}
+
+.form-field {
+  margin-bottom: 15px;
+}
+
+.form-button {
+  margin-top: 10px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+  .form-container {
+    margin: 10px;
+  }
+
+  .form-field {
+    margin-bottom: 10px;
+  }
+
+  .form-button {
+    margin-top: 5px;
+  }
+}

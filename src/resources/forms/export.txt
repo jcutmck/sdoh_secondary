@@ -1,0 +1,99 @@
+field_166238529
+Date of Birth
+
+
+field_166238573
+housingSecurity
+Are you worried or concerned that in the next two months  you may not have stable housing that you own, rent, or stay in  as a part of a household?
+Yes
+No
+
+field_166239670
+foodSecurity
+Within the past 12 months, have you worried that your food would run out before you had enough money to buy more?
+options\":[{\"label\":\"Often True\",\"value\":\"Often True\",\"imageUrl\":null},{\"label\":\"Sometimes True\",\"value\":\"Sometimes True\",\"imageUrl\":null},{\"label\":\"Never True\",\"value\":\"Never True
+
+
+field_166239604
+housingCondition (checkbox)
+Think about the place you live. Do you have problems with any of the following?
+Bug Infestation
+Mold
+Lead Paint or Pipes
+Inadequate Heat
+Oven or Stove not working
+No or not working smoke detectors
+Water Leaks
+None of the above
+
+field_166239685
+foodAccess
+Within the past 12 months, the food you bought just didn't last and you didn't have money to get more.
+options\":[{\"label\":\"Often True\",\"value\":\"Often True\",\"imageUrl\":null},{\"label\":\"Sometimes True\",\"value\":\"Sometimes True\",\"imageUrl\":null},{\"label\":\"Never True\",\"value\":\"Never True
+
+
+field_166239714 
+healthcareAccess
+"Do you put off or neglect going to the doctor because of  distance or transportation?""
+Yes No
+
+
+field_166239734
+utilitySecurity
+"In the past 12 months has the electric, gas, oil, or water  company threatened to shut off services in your home?"
+Yes No 
+Already shut off
+
+
+field_166239744
+childcareAccess
+"Do problems getting child care make it difficult for you to work or study?"
+Yes No 
+
+
+field_166239752
+occupationAccess
+"Do you have a job?"
+Yes No 
+
+
+field_166239754
+educationAccess
+"Do you have a high school degree?"
+Yes No 
+
+
+field_166239758
+financialSecurity
+"How often does this describe you? 
+I don't have enough money to pay my bills..."
+{\"label\":\"Never\",\"value\":\"Never\",\"imageUrl\":null},{\"label\":\"Rarely\",\"value\":\"Rarely\",\"imageUrl\":null},{\"label\":\"Sometimes\",\"value\":\"Sometimes\",\"imageUrl\":\"\"},{\"label\":\"Fairly Often\",\"value\":\"Fairly Often\",\"imageUrl\":\"\"},{\"label\":\"Frequently\",\"value\":\"Frequently\"
+
+
+field_166239858
+physicalSecurity
+"How often does anyone, including family, physically hurt you?"
+{\"label\":\"Never\",\"value\":\"Never\",\"imageUrl\":null},{\"label\":\"Rarely\",\"value\":\"Rarely\",\"imageUrl\":null},{\"label\":\"Sometimes\",\"value\":\"Sometimes\",\"imageUrl\":\"\"},{\"label\":\"Fairly Often\",\"value\":\"Fairly Often\",\"imageUrl\":\"\"},{\"label\":\"Frequently\",\"value\":\"Frequently
+
+
+field_166239860
+emotionalSecurity
+"How often does anyone, including family, insult or talk down  to you?"
+Never\",\"value\":\"Never\",\"imageUrl\":null},{\"label\":\"Rarely\",\"value\":\"Rarely\",\"imageUrl\":null},{\"label\":\"Sometimes\",\"value\":\"Sometimes\",\"imageUrl\":\"\"},{\"label\":\"Fairly Often\",\"value\":\"Fairly Often\",\"imageUrl\":\"\"},{\"label\":\"Frequently\",\"value\":\"Frequently
+
+
+field_166239867
+safetySecurity
+"How often does anyone, including family, threaten you with  harm? 
+Never\",\"value\":\"Never\",\"imageUrl\":null},{\"label\":\"Rarely\",\"value\":\"Rarely\",\"imageUrl\":null},{\"label\":\"Sometimes\",\"value\":\"Sometimes\",\"imageUrl\":\"\"},{\"label\":\"Fairly Often\",\"value\":\"Fairly Often\",\"imageUrl\":\"\"},{\"label\":\"Frequently\",\"value\":\"Frequently
+
+
+field_166239871
+wellbeingSecurity
+"How often does anyone, including family, scream or curse  at you?"
+Never\",\"imageUrl\":null},{\"label\":\"Rarely\",\"value\":\"Rarely\",\"imageUrl\":null},{\"label\":\"Sometimes\",\"value\":\"Sometimes\",\"imageUrl\":\"\"},{\"label\":\"Fairly Often\",\"value\":\"Fairly Often\",\"imageUrl\":\"\"},{\"label\":\"Frequently\",\"value\":\"Frequently
+
+field_166239912
+requestHelp
+"Would you like help with any of these needs?"
+Yes No

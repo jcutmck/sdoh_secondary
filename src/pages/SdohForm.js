@@ -1,37 +1,71 @@
-const SdohForm = () => {
+import React, {useState, useEffect} from 'react';
+import { SubmitButton } from '../components/Button';
+import ReusableForm from '../components/FormTemplate';
+import { initialValues, fields } from '../resources/forms/sdohContent';
+//import { useNavigate } from 'react-router-dom';
+//import { TextField } from '@mui/material';
+//import { formatDate } from '../utils/formatDate';
 
-return(
-    <div>
-        <p style={{
-            marginLeft: '1em', 
-            marginBottom: '1em', 
-            color: '#FF8200', 
-            fontWeight: 'bold'
-            }}
-        > 
-            Your visit has been successfully verified! 
-        </p>        
+// TEST PATIENT IN M502:  MRN= 2952535   FIN= 29525350001
+
+function UtSdoh() {   
+
+    //const [currentPage, setCurrentPage] = useState('landingpage');
+    const [isLoading, setIsLoading] = useState(true);
+    //const navigate = useNavigate();
         
-        <p style={{
-            marginLeft: '1em',
-            marginBottom: '1em', 
-            color: '#FF8200', 
-            fontWeight: 'bold'
-            }}
-        >
-            Please complete any form(s) listed below prior to your visit: 
-        </p>
+    const handleSubmit  = (values) => {
+        /*
+        /// Format the date value before submission
+        const formattedValues = {
+            ...values,
+            dob: formatDate(values.dob),
+        };*/
 
-        <a  
-            href="https://UTMC.formstack.com/forms/utmc_social_needs_assessment_tool" title="Online Form"
-            style={{
-            marginLeft: '2em', 
-            color: '#000080', 
-            textDecoration: 'underline'
-        }}
-        >
-            UTMC Social Needs Assessment Tool
-        </a>
-    </div>
-)};  
-export default SdohForm;
+        fetch('https://uhsvtsdohdapp01.utmck.edu:5000/api/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(values)
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            console.log(values);
+
+        })
+        .catch(error => {
+            // Handle errors
+            console.error(error);
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener('load', () => {
+        setIsLoading(false);
+        });
+        return () => {
+        window.removeEventListener('load', () => {});
+        };
+    }, []);
+
+    
+    
+
+    return (
+        <div>
+            <h1>Social Determinants of Health Form - v0.29</h1>
+            <ReusableForm
+                initialValues={initialValues}
+                onSubmit={handleSubmit}
+                fields={fields}
+                SubmitButton={(props) => (
+                    <SubmitButton {...props} text="SUBMIT" />
+                )}
+            />
+        </div>
+    );
+}
+
+export default UtSdoh;
