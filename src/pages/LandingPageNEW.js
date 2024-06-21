@@ -8,16 +8,19 @@ import { initialValues, fields } from '../resources/forms/verifyContent';
 function VerifyVisit() {
     const [isVerified, setIsVerified] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    //new useState values
+    const [tries, setTries] = useState(3);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-/*    
-    const initialValues = { firstName: '', lastName: '' };
-    const fields = [
-        { name: 'firstName', label: 'First Name', type: 'text'},
-        { name: 'lastName', label: 'Last Name', type: 'text' },
-        { name: 'dob', label: 'Date of Birth', type: 'date' },
-    ];
-*/
+    // Determine base API URL dynamically
+    const getApiUrl = () => {
+        const { hostname } = window.location;
+        if (hostname === 'sdohtest.utmck.edu') {
+          return 'https://sdohtest.utmck.edu:5000';
+        }
+        return 'https://uhsvtsdohdapp01.utmck.edu:5000';
+    };
 
     const handleSubmit = async (values, { setSubmitting, setErrors }) => {
         const formattedValues = {
@@ -26,9 +29,10 @@ function VerifyVisit() {
         };
 
         const sessionId = localStorage.getItem('session_id') || 'NaN';
+        const apiUrl = getApiUrl() + '/api/verify';
         
         try {
-            const response = await fetch('https://uhsvtsdohdapp01.utmck.edu:5000/api/verify', {
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -39,18 +43,34 @@ function VerifyVisit() {
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                //added new code here
+                const errorData = await response.json();
+                throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
             }
 
             const data = await response.json();
             console.log(data);
-            if (data.redirectTo === '/success') {
+            
+            if (data.message === 'NO VISITS FOUND') {
+                setTries(data.tries);
+                setError('No visits found. Please try again.');
+            } else if (data.redirectTo === '/success') {
                 localStorage.setItem('session_id', data.session_id);
                 setIsVerified(true);
-            }
+            } //used if you want to set a specific redirect, or redirect from flask backend
+              //else if (data.redirectTo) {
+              //  window.location.href = data.redirectTo;
+            //}
+
         } catch (error) {
             console.error('Failed to fetch:', error);
-            setErrors({ submit: 'Failed to submit form, please try again.' });
+            if (error.message === 'NO VISITS FOUND') {
+                setError(error.message);
+            } else if (error.message === 'Maximum tries exceeded. Redirecting.') {
+                window.location.href = '/different_page';
+            } else {
+                setErrors({ submit: 'Failed to submit form, please try again.' });
+            }
         } finally {
             setSubmitting(false);
         }
@@ -74,7 +94,9 @@ function VerifyVisit() {
 
     return (
         <div>
-            <h1>Visit Validation Form - v0.5</h1>
+            <h1>Visit Validation Form - v0.811</h1>
+            {error && <div className="error">{error}</div>}
+            {tries > 0 && <div className="tries">Attempts remaining: {tries}</div>}
             <ReusableForm
                 initialValues={initialValues}
                 onSubmit={handleSubmit}

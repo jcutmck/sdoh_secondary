@@ -1,16 +1,13 @@
 import React from 'react';
-import './Header.css'; // Import your CSS file for header styles (optional)
+import '../resources/Header.css'; // Import your CSS file for header styles (optional)
+import utlogo from '../resources/media/utmck_logo.png'
 
 const Header = () => {
   return (
-    <header className="main-header">
-      <img src="../resources/media/logo.svg" alt="ut_logo" />
-
-      <nav>
-        <a href="#">Home</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
-      </nav>
+    <header className="header">
+      <div className="logo">
+        <img src={utlogo} alt="Logo" />
+      </div>
     </header>
   );
 };
