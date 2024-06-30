@@ -2,19 +2,12 @@ import React, {useState, useEffect} from 'react';
 import { SubmitButton } from '../components/Button';
 import ReusableForm from '../components/FormTemplate';
 import { initialValues, fields } from '../resources/forms/sdohContent';
-//import { useNavigate } from 'react-router-dom';
-//import { TextField } from '@mui/material';
-//import { formatDate } from '../utils/formatDate';
 
-// TEST PATIENT IN M502:  MRN= 2952535   FIN= 29525350001
 
 function UtSdoh() {   
 
-    //const [currentPage, setCurrentPage] = useState('landingpage');
-    const [isLoading, setIsLoading] = useState(true);
-    //const navigate = useNavigate();
-        
-   
+    const [isLoading, setIsLoading] = useState(true);   
+
 
     const handleSubmit  = (values) => {
         const sessionId = localStorage.getItem('session_id');
@@ -65,7 +58,7 @@ function UtSdoh() {
 
     return (
         <div>
-            <h1>Social Determinants of Health Form - v0.811</h1>
+            <h1>Social Determinants of Health Form - v0.901</h1>
             <ReusableForm
                 initialValues={initialValues}
                 onSubmit={handleSubmit}

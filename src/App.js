@@ -1,13 +1,9 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-//import LandingPage from './pages/LandingPage';
-import LandingPageNEW from './pages/LandingPageNEW';
-import FstackForm from './pages/FstackForm';
-//import FstackFormIframe from './pages/FstackFormIframe';
+import LandingPage from './pages/LandingPage';
 import SdohForm from './pages/SdohForm';
 import Layout from '../src/components/Layout';
-//<Route path="/orderreq/:orderId" exact element={<PrintTemplate />} />
-//<Route path="/404" exact element={<NotFound />} />
+import CheckEnv from './components/CheckEnv';
 
 function App() {
   return (
@@ -17,13 +13,14 @@ function App() {
         <Router>
           <Layout>
             <Routes>
-              <Route path="/" exact element={<LandingPageNEW />} />
+              <Route path="/" exact element={<LandingPage />} />
               <Route path="/utform" exact element={<SdohForm />} />
-              <Route path="/fsform" exact element={<FstackForm />} />
             </Routes>
           </Layout>
         </Router>
       </div>
+      <h1>Environment Check</h1>
+      <CheckEnv />
     </div>
     );
 }

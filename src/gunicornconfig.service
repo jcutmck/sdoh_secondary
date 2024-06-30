@@ -1,0 +1,12 @@
+[Unit]
+Description=Gunicorn instance to serve the SDOH FLASK backend application
+After=network.target
+
+[Service]
+User=jclutter
+Group=jclutter
+WorkingDirectory=/home/jclutter/sdohapi/sdohapi
+ExecStart=/usr/local/bin/gunicorn --workers 3 --bind 0.0.0.0:5000 sdohapi:app
+
+[Install]
+WantedBy=multi-user.target
