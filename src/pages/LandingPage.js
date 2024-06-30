@@ -8,6 +8,7 @@ import { initialValues, fields } from '../resources/forms/verifyContent';
 function VerifyVisit() {
     const [isVerified, setIsVerified] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     //new useState values
     const [tries, setTries] = useState(3);
     const [error, setError] = useState(null);
@@ -22,7 +23,7 @@ function VerifyVisit() {
             ...values,
             dob: formatDate(values.dob),
         };
-
+        setIsSubmitting(true);
         const sessionId = localStorage.getItem('session_id') || 'NaN';
         const apiUrl = `${getApiUrl}/api/verify`;
         console.log('API URL:', apiUrl);
@@ -37,7 +38,6 @@ function VerifyVisit() {
                 body: JSON.stringify(formattedValues),
                 credentials: 'include'  // Ensure cookies are included in the request
             });
-
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
@@ -52,6 +52,7 @@ function VerifyVisit() {
             } else if (data.redirectTo === '/success') {
                 localStorage.setItem('session_id', data.session_id);
                 setIsVerified(true);
+                setIsSubmitting(false);
             } //used if you want to set a specific redirect, or redirect from flask backend
               //else if (data.redirectTo) {
               //  window.location.href = data.redirectTo;
@@ -61,10 +62,10 @@ function VerifyVisit() {
             console.error('Failed to fetch:', error);
             if (error.message === 'NO VISITS FOUND') {
                 setError(error.message);
-            } else if (error.message === 'Maximum tries exceeded. Redirecting.') {
-                window.location.href = '/different_page';
+            } else if (error.message.includes('Maximum tries exceeded')) {
+                navigate('/failedpage', { replace: true });
             } else {
-                setErrors({ submit: 'Failed to submit form, please try again.' });
+                setErrors({ submit: 'Failed to submit validation information, please try again.' });
             }
         } finally {
             setSubmitting(false);
@@ -89,7 +90,7 @@ function VerifyVisit() {
 
     return (
         <div>
-            <h1>Visit Validation Form - v0.901</h1>
+            <h1>Visit Validation Form - v0.906</h1>
             {error && <div className="error">{error}</div>}
             {tries > 0 && <div className="tries">Attempts remaining: {tries}</div>}
             <ReusableForm
