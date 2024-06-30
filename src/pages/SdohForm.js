@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom'
 import { SubmitButton } from '../components/Button';
 import ReusableForm from '../components/FormTemplate';
 import { initialValues, fields } from '../resources/forms/sdohContent';
@@ -6,12 +7,14 @@ import { initialValues, fields } from '../resources/forms/sdohContent';
 
 function UtSdoh() {   
 
-    const [isLoading, setIsLoading] = useState(true);   
-
-
+    const [isLoading, setIsLoading] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);   
+    const navigate = useNavigate();
+    
     const handleSubmit  = (values) => {
         const sessionId = localStorage.getItem('session_id');
         console.log('Session ID:', sessionId);
+        setIsSubmitting(true);
         /*
         /// Format the date value before submission
         const formattedValues = {
@@ -32,17 +35,18 @@ function UtSdoh() {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            response.json();
+            return response.json(); // Parse the response body as JSON           
         })
-         
         .then((data) => {
             console.log(data);
             console.log(values);
-
+            // Navigate to the success page
+            navigate('/successpage', { replace: true });
         })
         .catch(error => {
             // Handle errors
             console.error(error);
+            navigate('/failedpage', { replace: true });
         });
     };
 
