@@ -10,7 +10,7 @@ class FormField {
   
 //Create InitialValues class and the constructor/object within
   class InitialValues {
-    constructor(mrn = '', fin = '', housingSecurity = '', foodSecurity = '', housingCondition = '', foodAccess = '', healthcareAccess = '', utilitySecurity = '', childcareAccess = '', occupationAccess = '', educationAccess = '', financialSecurity = '', physicalSecurity = '', emotionalSecurity = '', safetySecurity = '', wellbeingSecurity = '', requestHelp = '') {
+    constructor(mrn = '', fin = '', housingSecurity = '', foodSecurity = '', housingCondition = [], foodAccess = '', healthcareAccess = '', utilitySecurity = '', childcareAccess = '', occupationAccess = '', educationAccess = '', financialSecurity = '', physicalSecurity = '', emotionalSecurity = '', safetySecurity = '', wellbeingSecurity = '', requestHelp = '') {
       this.mrn = mrn;
       this.fin = fin;
       this.housingSecurity = housingSecurity;
@@ -36,11 +36,7 @@ class FormField {
   const initialValues = new InitialValues();
   
   //Create fields object and fill with instances of the FormField class for each field. Builds out the questions(fields) and possible answers
-
-
   const fields = [
-    //new FormField('mrn', 'MRN', 'text'),
-    //new FormField('fin', 'FIN', 'text'),
     new FormField(
         'housingSecurity',
         'Are you worried or concerned that in the next two months you may not have stable housing that you own, rent, or stay in as a part of a household?',
@@ -48,6 +44,7 @@ class FormField {
         [
           { value: 'Yes', label: 'Yes' },
           { value: 'No', label: 'No' },
+          { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
       ),
     new FormField(
@@ -58,12 +55,13 @@ class FormField {
             { value: 'Often True', label: 'Often True' },
             { value: 'Sometimes True', label: 'Sometimes True' },
             { value: 'Never True', label: 'Never True' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),
     new FormField(
         'housingCondition',
-        'Think about the place you live. Do you have problems with any of the following?',
-        'radio',
+        'Think about the place you live. Do you have problems with  any of the following? ',
+        'checkbox',
         [
             { value: 'Bug Infestation', label: 'Bug Infestation' },
             { value: 'Mold', label: 'Mold' },
@@ -73,6 +71,7 @@ class FormField {
             { value: 'No or not working smoke detectors', label: 'No or not working smoke detectors' },
             { value: 'Water Leaks', label: 'Water Leaks' },
             { value: 'None of the above', label: 'None of the above' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),  
     new FormField(
@@ -83,6 +82,7 @@ class FormField {
             { value: 'Often True', label: 'Often True' },
             { value: 'Sometimes True', label: 'Sometimes True' },
             { value: 'Never True', label: 'Never True' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),
     new FormField(
@@ -92,6 +92,7 @@ class FormField {
         [
             { value: 'Yes', label: 'Yes' },
             { value: 'No', label: 'No' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),  
     new FormField(
@@ -102,6 +103,7 @@ class FormField {
             { value: 'Yes', label: 'Yes' },
             { value: 'No', label: 'No' },
             { value: 'Already shut off', label: 'Already shut off' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),  
     new FormField(
@@ -111,6 +113,7 @@ class FormField {
         [
             { value: 'Yes', label: 'Yes' },
             { value: 'No', label: 'No' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),
     new FormField(
@@ -120,6 +123,7 @@ class FormField {
         [
             { value: 'Yes', label: 'Yes' },
             { value: 'No', label: 'No' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),  
     new FormField(
@@ -129,6 +133,7 @@ class FormField {
         [
             { value: 'Yes', label: 'Yes' },
             { value: 'No', label: 'No' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),    
     new FormField(
@@ -141,6 +146,7 @@ class FormField {
             { value: 'Sometimes', label: 'Sometimes' },
             { value: 'Fairly Often', label: 'Fairly Often' },
             { value: 'Frequently', label: 'Frequently' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),  
     new FormField(
@@ -153,6 +159,7 @@ class FormField {
             { value: 'Sometimes', label: 'Sometimes' },
             { value: 'Fairly Often', label: 'Fairly Often' },
             { value: 'Frequently', label: 'Frequently' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),  
     new FormField(
@@ -165,6 +172,7 @@ class FormField {
             { value: 'Sometimes', label: 'Sometimes' },
             { value: 'Fairly Often', label: 'Fairly Often' },
             { value: 'Frequently', label: 'Frequently' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),  
     new FormField(
@@ -177,6 +185,7 @@ class FormField {
             { value: 'Sometimes', label: 'Sometimes' },
             { value: 'Fairly Often', label: 'Fairly Often' },
             { value: 'Frequently', label: 'Frequently' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),  
     new FormField(
@@ -189,6 +198,7 @@ class FormField {
             { value: 'Sometimes', label: 'Sometimes' },
             { value: 'Fairly Often', label: 'Fairly Often' },
             { value: 'Frequently', label: 'Frequently' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),
     new FormField(
@@ -198,6 +208,7 @@ class FormField {
         [
             { value: 'Yes', label: 'Yes' },
             { value: 'No', label: 'No' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),      
   ];

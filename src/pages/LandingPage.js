@@ -1,105 +1,107 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SubmitButton } from '../components/Button';
-import { TextField } from '@mui/material';
+import ReusableForm from '../components/FormTemplate';
+import { formatDate } from '../utils/formatDate';
+import { initialValues, fields } from '../resources/forms/verifyContent';
 
-
-function VerifyVisit() {   
-
-    //const [currentPage, setCurrentPage] = useState('landingpage');
-    //const [failVerify, setFailVerify] = useState(false);
+function VerifyVisit() {
     const [isVerified, setIsVerified] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [fName, setFName] = useState('');
-    const [lName, setLName] = useState('');
-    const [dob, setDob] = useState('');
-    
+    //new useState values
+    const [tries, setTries] = useState(3);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    const handleClick = () => {
-        const data = {
-            firstName: fName,
-            lastName: lName,
-            dob: dob
+    // Determine base API URL dynamically
+    const getApiUrl = process.env.REACT_APP_BE_API;
+    console.log(getApiUrl);
+    
+    const handleSubmit = async (values, { setSubmitting, setErrors }) => {
+        const formattedValues = {
+            ...values,
+            dob: formatDate(values.dob),
         };
 
-        // local pyenv version:  fetch('http://127.0.0.1:5000/api/verify', {
-        //LOCAL TEST:  'Content-Type': 'application/json'
-      
-        // corepoint version:  fetch('https://cptest-vip.utmck.edu:9443/dev/', {
-        //COREPOINT TEST:  'Content-Type': '*/*'
+        const sessionId = localStorage.getItem('session_id') || 'NaN';
+        const apiUrl = `${getApiUrl}/api/verify`;
+        console.log('API URL:', apiUrl);
+        
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Session-ID': sessionId  // Add this if you need to send Session-ID
+                },
+                body: JSON.stringify(formattedValues),
+                credentials: 'include'  // Ensure cookies are included in the request
+            });
 
-        // UT Dev Server Version:  fetch('http://uhsvtsdohdapp01.utmck.edu:5000/', {
-        //COREPOINT TEST:  'Content-Type': 'application/json'
-    
-        fetch('https://uhsvtsdohdapp01.utmck.edu:5000/api/verify', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if (data.redirectTo === '/success') {
-                setIsVerified(true);
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
             }
-        })
-        .catch(error => {
-            // Handle errors
-            console.error(error);
-        });
+
+            const data = await response.json();
+            console.log(data);
+            
+            if (data.message === 'NO VISITS FOUND') {
+                setTries(data.tries);
+                setError('No visits found. Please try again.');
+            } else if (data.redirectTo === '/success') {
+                localStorage.setItem('session_id', data.session_id);
+                setIsVerified(true);
+            } //used if you want to set a specific redirect, or redirect from flask backend
+              //else if (data.redirectTo) {
+              //  window.location.href = data.redirectTo;
+            //}
+
+        } catch (error) {
+            console.error('Failed to fetch:', error);
+            if (error.message === 'NO VISITS FOUND') {
+                setError(error.message);
+            } else if (error.message === 'Maximum tries exceeded. Redirecting.') {
+                window.location.href = '/different_page';
+            } else {
+                setErrors({ submit: 'Failed to submit form, please try again.' });
+            }
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     useEffect(() => {
         window.addEventListener('load', () => {
-          setIsLoading(false);
+            setIsLoading(false);
         });
         return () => {
-          window.removeEventListener('load', () => {});
+            window.removeEventListener('load', () => {});
         };
-      }, []);
+    }, []);
 
     useEffect(() => {
         console.log('Verified Status: ', isVerified);
-        if(isVerified) {
-            // Navigate to fsform.js with values as state
-            navigate('/fsform', { state: { isVerified } }); 
+        if (isVerified) {
+            navigate('/utform', { state: { isVerified } });
         }
     }, [isVerified, navigate]);
-    
-     
-    return (
 
+    return (
         <div>
-            <h1>"This is the Landing Page - v0.1"</h1>
-            <p>Please enter the following details to verify your visit</p>
-            <div className="py-1">
-                <TextField id="visittype" label="First Name" variant="filled"
-                value={fName}
-                onChange={(e) => setFName(e.target.value)}
-                />
-            </div> 
-            <div className="py-1">
-                <TextField id="lname" label="Last Name" variant="filled" 
-                value={lName}
-                onChange={(e) => setLName(e.target.value)}
-                />
-            </div>
-            <div className="py-1">
-                <TextField id="dob" label="Date of Birth" variant="filled" type="Date"
-                value={dob}
-                onChange={(e) => setDob(e.target.value)}
-                InputLabelProps={{
-                            shrink: true,}}
-                />
-            </div> 
-            <div>
-                <SubmitButton text="Verify Visit" onClick={handleClick} />
-            </div>
+            <h1>Visit Validation Form - v0.901</h1>
+            {error && <div className="error">{error}</div>}
+            {tries > 0 && <div className="tries">Attempts remaining: {tries}</div>}
+            <ReusableForm
+                initialValues={initialValues}
+                onSubmit={handleSubmit}
+                fields={fields}
+                SubmitButton={(props) => (
+                    <SubmitButton {...props} text="Verify Visit" />
+                )}
+            />
         </div>
-  );
+    );
 }
 
 export default VerifyVisit;

@@ -1,8 +1,8 @@
 // ReusableForm.js
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import { TextField, Checkbox, RadioGroup } from 'formik-mui';
-import { Button, Radio, FormControl, FormLabel, FormControlLabel, LinearProgress } from '@mui/material';
+import { TextField, CheckboxWithLabel, RadioGroup } from 'formik-mui';
+import { Button, Radio, FormControl, FormLabel, FormControlLabel, FormGroup } from '@mui/material';
 import FormikDateField from './FormikDateField';
 import '../resources/formStyles.css' ;
 
@@ -13,11 +13,9 @@ import '../resources/formStyles.css' ;
         initialValues={initialValues}
         onSubmit={onSubmit}
       >
-        {({ isSubmitting, submitForm }) => (
+        {({ isSubmitting, submitForm, setFieldValue, values }) => (
           <Form className="form-container">
             {fields.map((field, index) => {
-              // Add logging to debug field structure
-              //console.log(`Rendering field:`, field);
 
               // Ensure the field object has a type property
               if (!field || !field.type) {
@@ -61,16 +59,43 @@ import '../resources/formStyles.css' ;
                   </FormControl>
                );
               } else if (field.type === 'checkbox') {
-              // CHECKBOX field config for form template  
-                return (
-                  <Field
-                    key={index}
-                    component={Checkbox}
-                    name={field.name}
-                    label={field.label}
-                    // Add any other props as needed for checkbox input
-                  />
-                );
+              // CHECKBOX field config for form template
+              if (!field.options.length) {
+                console.error(`Field at index ${index} of type 'checkbox' is missing 'options' property`, field);
+                return null;
+              }
+
+              return (
+                <FormControl key={index} component="fieldset">
+                  <FormLabel component="legend">{field.label}</FormLabel>
+                  <FormGroup>
+                    {field.options.map((option, optionIndex) => (
+                      <FormControlLabel
+                        key={optionIndex}
+                        control={
+                          <Field
+                            component={CheckboxWithLabel}
+                            type="checkbox"
+                            name={`housingCondition`}
+                            value={option.value}
+                            Label={{ label: option.label }}
+                            disabled={isSubmitting}
+                            onChange={() => {
+                              const currentValues = values.housingCondition || [];
+                              if (currentValues.includes(option.value)) {
+                                setFieldValue('housingCondition', currentValues.filter(v => v !== option.value));
+                              } else {
+                                setFieldValue('housingCondition', [...currentValues, option.value]);
+                              }
+                            }}
+                          />
+                        }
+                        label={option.label}
+                      />
+                    ))}
+                  </FormGroup>
+                </FormControl>
+              );
               } else 
               return (
                 <Field
