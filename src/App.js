@@ -6,7 +6,7 @@ import SuccessPage from './pages/SplashSuccess';
 import FailedPage from './pages/SplashFailed';
 import InvalidPage from './pages/SplashInvalid';
 import Layout from '../src/components/Layout';
-import CheckEnv from './components/CheckEnv';
+
 
 function App() {
   return (
@@ -25,8 +25,6 @@ function App() {
           </Layout>
         </Router>
       </div>
-      <h1>Environment Check</h1>
-      <CheckEnv />
     </div>
     );
 }

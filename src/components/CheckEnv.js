@@ -1,6 +1,13 @@
 // src/components/CheckEnv.js
 import React, { useEffect } from 'react';
 
+/* Code for app.js when testing environment checker
+import CheckEnv from './components/CheckEnv';
+<h1>Environment Check</h1>
+<CheckEnv />
+*/
+
+
 const CheckEnv = () => {
   useEffect(() => {
     console.log('Current NODE_ENV:', process.env.NODE_ENV);

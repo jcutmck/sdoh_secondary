@@ -64,16 +64,13 @@ import '../resources/formStyles.css' ;
                 console.error(`Field at index ${index} of type 'checkbox' is missing 'options' property`, field);
                 return null;
               }
-
               return (
                 <FormControl key={index} component="fieldset">
                   <FormLabel component="legend">{field.label}</FormLabel>
                   <FormGroup>
                     {field.options.map((option, optionIndex) => (
-                      <FormControlLabel
-                        key={optionIndex}
-                        control={
                           <Field
+                            key={optionIndex}
                             component={CheckboxWithLabel}
                             type="checkbox"
                             name={`housingCondition`}
@@ -89,9 +86,6 @@ import '../resources/formStyles.css' ;
                               }
                             }}
                           />
-                        }
-                        label={option.label}
-                      />
                     ))}
                   </FormGroup>
                 </FormControl>

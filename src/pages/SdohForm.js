@@ -10,11 +10,20 @@ function UtSdoh() {
     const [isLoading, setIsLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);   
     const navigate = useNavigate();
-    
+
+    // Determine base API URL dynamically
+    //const getApiUrl = process.env.REACT_APP_BE_API;
+    //console.log(getApiUrl);    
+
     const handleSubmit  = (values) => {
         const sessionId = localStorage.getItem('session_id');
         console.log('Session ID:', sessionId);
         setIsSubmitting(true);
+        //const apiUrl = `${getApiUrl}/api/submit`;
+        const apiUrl = `https://sdohtest.utmck.edu/api/submit`;
+        
+        console.log('API URL:', apiUrl);
+
         /*
         /// Format the date value before submission
         const formattedValues = {
@@ -22,7 +31,7 @@ function UtSdoh() {
             dob: formatDate(values.dob),
         };*/
     
-        fetch('https://uhsvtsdohdapp01.utmck.edu:5000/api/submit', {
+        fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -62,7 +71,7 @@ function UtSdoh() {
 
     return (
         <div>
-            <h1>Social Determinants of Health Form - v0.905</h1>
+            <h1>Social Determinants of Health Form</h1>
             <ReusableForm
                 initialValues={initialValues}
                 onSubmit={handleSubmit}

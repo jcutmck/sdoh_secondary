@@ -11,7 +11,7 @@ const InvalidPage = () => {
 
   return (
     <div>
-      <h1>"You have reached the maximum validation attempts. Please speak with a UT Medical Center team member to validate your visit information."</h1>
+      <h1>You have reached the maximum validation attempts. Please speak with a UT Medical Center team member to validate your visit information.</h1>
       <SubmitButton text="Return Home" onClick={handleHome} />
     </div>
   );

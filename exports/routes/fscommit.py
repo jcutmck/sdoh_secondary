@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify, current_app, session
 from utils.extensions import cache
-#from flask_caching import Cache 
 import requests
 
 submit_bp = Blueprint('submit', __name__)
@@ -18,7 +17,7 @@ def submit():
 
     current_app.logger.info("!!START of FSCOMMIT-SUBMIT ROUTE!!")
     data = request.json
-    current_app.logger.info(data)        
+    current_app.logger.info(data)
     session_id = request.headers.get('Session-ID')
     validation_data = cache.get(session_id)
     current_app.logger.info(f"FSCOMMIT -Session ID: {session_id}")
@@ -27,13 +26,16 @@ def submit():
 #    if not validation_data:
 #        return jsonify({"error": "No validation data found"}), 400
 
-#    fname = validation_data.get('FN')
-#    lname = validation_data.get('LN')
+    fname = validation_data.get('FNM')
+    lname = validation_data.get('LNM')
+    dtbrt = validation_data.get('DOB')
     mrn = validation_data.get('IDM')
     fin = validation_data.get('IDF')
     hous_sec = data.get('housingSecurity')
+    # Capture the housingCondition values as a list
+    hous_con = data.get('housingCondition', [])
+    #hous_con = data.get('housingCondition')
     food_sec = data.get('foodSecurity')
-    hous_con = data.get('housingCondition')
     food_acc = data.get('foodAccess')
     heal_acc = data.get('healthcareAccess')
     util_sec = data.get('utilitySecurity')
@@ -46,39 +48,42 @@ def submit():
     safe_sec = data.get('safetySecurity')
     well_sec = data.get('wellbeingSecurity')
     help_req = data.get('requestHelp')
-    
+
+    hous_con_str = "\n".join(hous_con)
+
     formstack= 'https://www.formstack.com/api/v2/form/5780073/submission.json'
-    
+
     # Send the data to the mock external system
     #responses = requests.post(f'http://{external_system_ip}/verify', json=data)
 
 
-    # Construct payload for Formstack submission
+ # Construct payload for Formstack submission
     payload = {
-	"field_166238501": {
-          "first": "Rules",
-          "last": "Testing",
+        "field_166238501": {
+          "first": fname,
+          "last": lname,
         },
-    	"field_166238471": mrn,      # Replace '12346' with the actual field ID for Food Security
+        "field_166238471": mrn,      
         "field_166238472": fin,
-        "field_166238529": "10/10/1984",
+        "field_166238529": dtbrt,
+        "field_166238573": hous_sec,
+        "field_166239604": hous_con_str, #hous_con,
         "field_166239670": food_sec,
-        "field_166239604": hous_con,
         "field_166239685": food_acc,
         "field_166239714": heal_acc,
-        "field_166239734": util_sec,        
+        "field_166239734": util_sec,
         "field_166239744": care_acc,
-        "field_166239752": occu_acc,        
+        "field_166239752": occu_acc,
         "field_166239754": educ_sec,
-        "field_166239758": fina_sec,        
+        "field_166239758": fina_sec,
         "field_166239858": phys_sec,
-        "field_166239860": emot_sec,        
+        "field_166239860": emot_sec,
         "field_166239867": safe_sec,
-        "field_166239871": well_sec,        
-        "field_166239912": help_req,           
+        "field_166239871": well_sec,
+        "field_166239912": help_req,
         # Add more fields as needed
     }
-    
+
 # Retrieve the bearer token from a secure location
     bearer_token = "ccf1c3dd965d78588833343192c19514"  # Replace with actual token retrieval
 
