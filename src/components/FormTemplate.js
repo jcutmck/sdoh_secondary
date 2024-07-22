@@ -7,11 +7,12 @@ import FormikDateField from './FormikDateField';
 import '../resources/formStyles.css' ;
 
 
-  const ReusableForm = ({ initialValues = {}, onSubmit, fields = [], SubmitButton, buttonText }) => {
+  const ReusableForm = ({ initialValues = {}, onSubmit, fields = [], SubmitButton, buttonText, validationSchema }) => {
     return (
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
+        validationSchema={validationSchema}
       >
         {({ isSubmitting, submitForm, setFieldValue, values }) => (
           <Form className="form-container">

@@ -12,25 +12,17 @@ function UtSdoh() {
     const navigate = useNavigate();
 
     // Determine base API URL dynamically
-    //const getApiUrl = process.env.REACT_APP_BE_API;
-    //console.log(getApiUrl);    
+    const getApiUrl = process.env.REACT_APP_URL; 
 
     const handleSubmit  = (values) => {
         const sessionId = localStorage.getItem('session_id');
-        console.log('Session ID:', sessionId);
+        //console.log('Session ID:', sessionId);
         setIsSubmitting(true);
-        //const apiUrl = `${getApiUrl}/api/submit`;
-        const apiUrl = `https://sdohtest.utmck.edu/api/submit`;
+        const apiUrl = `${getApiUrl}/api/submit`;
+        //const apiUrl = `https://sdohtest.utmck.edu/api/submit`;
         
-        console.log('API URL:', apiUrl);
+        //console.log('API URL:', apiUrl);
 
-        /*
-        /// Format the date value before submission
-        const formattedValues = {
-            ...values,
-            dob: formatDate(values.dob),
-        };*/
-    
         fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -47,14 +39,14 @@ function UtSdoh() {
             return response.json(); // Parse the response body as JSON           
         })
         .then((data) => {
-            console.log(data);
-            console.log(values);
+            //console.log(data);
+            //console.log(values);
             // Navigate to the success page
             navigate('/successpage', { replace: true });
         })
         .catch(error => {
             // Handle errors
-            console.error(error);
+            //console.error(error);
             navigate('/failedpage', { replace: true });
         });
     };
