@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import SdohForm from './pages/SdohForm';
+import ValidateUsr from './pages/ValidateUsr';
 import SuccessPage from './pages/SplashSuccess';
 import FailedPage from './pages/SplashFailed';
 import InvalidPage from './pages/SplashInvalid';
@@ -17,6 +18,7 @@ function App() {
           <Layout>
             <Routes>
               <Route path="/" exact element={<LandingPage />} />
+              <Route path="/validateusr" exact element={<ValidateUsr />} />
               <Route path="/utform" exact element={<SdohForm />} />
               <Route path="/successpage" exact element={<SuccessPage />} />
               <Route path="/faileddpage" exact element={<FailedPage />} />

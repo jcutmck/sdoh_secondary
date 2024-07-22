@@ -4,8 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 function NotFound() {   
     let location = useLocation();
     const navigate = useNavigate();
-    console.log(location.page);
-    console.log(window.location.href);
+    //console.log(location.page);
+    //console.log(window.location.href);
 
     
       const handleClick = () => {
