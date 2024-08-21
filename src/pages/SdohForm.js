@@ -36,6 +36,17 @@ function UtSdoh() {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+             // Check for security headers
+            const csp = response.headers.get('Content-Security-Policy');
+            const xfo = response.headers.get('X-Frame-Options');
+            console.log('Content-Security-Policy:', csp);
+            console.log('X-Frame-Options:', xfo);
+
+            // You can add some logic here to handle cases where headers are missing
+            if (!csp || !xfo) {
+                console.warn('Security headers are not set properly');
+                //  You might want to log this or handle it in some way
+            }
             return response.json(); // Parse the response body as JSON           
         })
         .then((data) => {

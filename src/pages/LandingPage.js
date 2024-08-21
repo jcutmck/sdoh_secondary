@@ -60,6 +60,18 @@ function VerifyVisit() {
                 setVerificationToken(data.verificationToken);
                 localStorage.setItem('session_id', data.session_id);
                 setAddresses(data.addresses); // Store addresses
+                
+                // Check for security headers
+                const csp = response.headers.get('Content-Security-Policy');
+                const xfo = response.headers.get('X-Frame-Options');
+                console.log('Content-Security-Policy:', csp);
+                console.log('X-Frame-Options:', xfo);
+
+                // You can add some logic here to handle cases where headers are missing
+                if (!csp || !xfo) {
+                    console.warn('Security headers are not set properly');
+                    //  You might want to log this or handle it in some way
+                }
             } else {
                 setIsVerified(false);
                 if (data.message === 'NO VISITS FOUND') {
