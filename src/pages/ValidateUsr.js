@@ -4,7 +4,7 @@ import { SubmitButton } from '../components/Button';
 import ReusableForm from '../components/FormTemplate';
 import { FormField, InitialValues, initialValues, validationSchema } from '../resources/forms/validateContent';
 import { string } from 'yup';
-
+import NavigationControl from '../components/NavigationControl';
 
 
 function ValidateUsr() {   
@@ -90,22 +90,24 @@ function ValidateUsr() {
     };
 
     return (
-        <div>
-            <h1>Please choose an address where you live or have lived:</h1>
-            {!isLoading && addresses.length > 0 ? (
-            <ReusableForm
-                initialValues={initialValues}
-                onSubmit={handleSubmit}
-                fields={fields}
-                validationSchema={validationSchema}
-                SubmitButton={(props) => (
-                    <SubmitButton {...props} text="SUBMIT" />
+        <NavigationControl redirectPath="/">
+            <div>
+                <h1>Please choose an address where you live or have lived:</h1>
+                {!isLoading && addresses.length > 0 ? (
+                <ReusableForm
+                    initialValues={initialValues}
+                    onSubmit={handleSubmit}
+                    fields={fields}
+                    validationSchema={validationSchema}
+                    SubmitButton={(props) => (
+                        <SubmitButton {...props} text="SUBMIT" />
+                    )}
+                />
+            ) : (
+                    <p>Loading verification question...</p>
                 )}
-            />
-        ) : (
-                <p>Loading verification question...</p>
-            )}
-        </div>
+            </div>
+        </NavigationControl>
     );
 }
 

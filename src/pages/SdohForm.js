@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { SubmitButton } from '../components/Button';
 import ReusableForm from '../components/FormTemplate';
 import { initialValues, fields } from '../resources/forms/sdohContent';
-
+import NavigationControl from '../components/NavigationControl';
 
 function UtSdoh() {   
 
@@ -73,17 +73,19 @@ function UtSdoh() {
 
 
     return (
-        <div>
-            <h1>Social Determinants of Health Form</h1>
-            <ReusableForm
-                initialValues={initialValues}
-                onSubmit={handleSubmit}
-                fields={fields}
-                SubmitButton={(props) => (
-                    <SubmitButton {...props} text="SUBMIT" />
-                )}
-            />
-        </div>
+        <NavigationControl redirectPath="/">
+            <div>
+                <h1>Social Determinants of Health Form</h1>
+                <ReusableForm
+                    initialValues={initialValues}
+                    onSubmit={handleSubmit}
+                    fields={fields}
+                    SubmitButton={(props) => (
+                        <SubmitButton {...props} text="SUBMIT" />
+                    )}
+                />
+            </div>
+        </NavigationControl>
     );
 }
 

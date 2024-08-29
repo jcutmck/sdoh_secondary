@@ -4,6 +4,8 @@ import { SubmitButton } from '../components/Button';
 import ReusableForm from '../components/FormTemplate';
 import { formatDate } from '../utils/formatDate';
 import { initialValues, fields, validationSchema } from '../resources/forms/verifyContent';
+import NavigationControl from '../components/NavigationControl';
+
 
 function VerifyVisit() {
     const [isVerified, setIsVerified] = useState(false);
@@ -123,20 +125,22 @@ function VerifyVisit() {
     }, [isVerified, addresses, navigate, verificationToken]);
     
     return (
-        <div>
-            <h1 className="ml-4">Patient Visit Validation</h1>
-            {error && <div className="error ml-4">{error}</div>}
-            {attempts > 0 && attempts < 3 && <div className="tries ml-4 ">Validation attempts remaining: {attempts}</div>}
-            <ReusableForm
-                initialValues={initialValues}
-                onSubmit={handleSubmit}
-                fields={fields}
-                validationSchema={validationSchema}
-                SubmitButton={(props) => (
-                    <SubmitButton {...props} text="Verify Visit" />
-                )}
-            />
-        </div>
+        <NavigationControl redirectPath="/">
+            <div>
+                <h1 className="ml-4">Patient Visit Validation</h1>
+                {error && <div className="error ml-4">{error}</div>}
+                {attempts > 0 && attempts < 3 && <div className="tries ml-4 ">Validation attempts remaining: {attempts}</div>}
+                <ReusableForm
+                    initialValues={initialValues}
+                    onSubmit={handleSubmit}
+                    fields={fields}
+                    validationSchema={validationSchema}
+                    SubmitButton={(props) => (
+                        <SubmitButton {...props} text="Verify Visit" />
+                    )}
+                />
+            </div>
+        </NavigationControl>
     );
 }
 
