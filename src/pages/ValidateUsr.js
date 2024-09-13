@@ -11,19 +11,20 @@ function ValidateUsr() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);   
-    const [addresses, setAddresses] = useState([]);
+//    const [addresses, setAddresses] = useState([]);
     const [fields, setFields] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
 
     // Destructure the state, providing default values in case state is undefined
-    const {veriToken = ''} = location.state || {};
+    const {isVerified, veriToken, addresses, verifyNonce } = location.state || {};
+    
     // Determine base API URL dynamically
     const getApiUrl = process.env.REACT_APP_URL;
 
     useEffect(() => {
         if (location.state && location.state.addresses) {
-            setAddresses(location.state.addresses);
+            //setAddresses(location.state.addresses);
             // Create fields dynamically based on addresses
             const addressFields = [
                 new FormField(
@@ -46,14 +47,19 @@ function ValidateUsr() {
 
     const handleSubmit  = async (values) => {
         const sessionId = localStorage.getItem('session_id');
-        //console.log('Session ID:', sessionId);
-        //console.log('Token:', veriToken);
+        console.log('Session ID:', sessionId);
+        console.log('Token:', veriToken);
+        console.log('verifyNonce:', verifyNonce);
         setIsSubmitting(true);
         const apiUrl = `${getApiUrl}/api/validate`;
         //const apiUrl = `https://sdohtest.utmck.edu/api/validate`;
-        
         //console.log('API URL:', apiUrl);
-    
+        console.log('Headers being sent:', {
+            'Content-Type': 'application/json',
+            'Session-ID': sessionId,
+            'Verification-Token': veriToken,
+            'X-CSP-Nonce': verifyNonce,
+          });
         try {
             const response = await fetch(apiUrl, {
                 method: 'POST',
@@ -61,6 +67,7 @@ function ValidateUsr() {
                     'Content-Type': 'application/json',
                     'Session-ID': sessionId,    
                     'Verification-Token': veriToken, 
+                    'X-CSP-Nonce': verifyNonce,
                 },
                 body: JSON.stringify(values),
                 credentials: 'include',  // Ensure cookies are included in the request
@@ -78,11 +85,11 @@ function ValidateUsr() {
                 data.session_id !== sessionId) {
                     throw new Error('Validation failed or invalid session');
                 }
-
             // Navigate to the success page
             navigate('/utform', { replace: true });    
         } catch(error) {
             console.error('Error:', error);
+            console.log("Failure on React Side");
             navigate('/validationfail', { replace: true });
         } finally {
             setIsSubmitting(false);

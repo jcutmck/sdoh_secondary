@@ -1,12 +1,15 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { CacheProvider } from '@emotion/react';
-import LandingPage from './pages/LandingPage';
+import VerifyVisit from './pages/VerifyVisit';
 import SdohForm from './pages/SdohForm';
 import ValidateUsr from './pages/ValidateUsr';
 import SuccessPage from './pages/SplashSuccess';
 import FailedPage from './pages/SplashFailed';
 import InvalidPage from './pages/SplashInvalid';
+//import WelcomeStart from './pages/WelcomeStart';
+//import VisitFormsCheck from './pages/VisitFormsCheck;
+import SDOHWelcome from './pages/WelcomeSDOH';
 import Layout from '../src/components/Layout';
 import createEmotionCache from '../src/components/EmotionCache'; // You'll need to create this file
 
@@ -21,7 +24,8 @@ function App({ emotionCache = clientSideEmotionCache }) {
           <Router>
             <Layout>
               <Routes>
-                <Route path="/" exact element={<LandingPage />} />
+                <Route path="/sdoh" exact element={<VerifyVisit />} />
+                <Route path="/" exact element={<SDOHWelcome />} />
                 <Route path="/validateusr" exact element={<ValidateUsr />} />
                 <Route path="/utform" exact element={<SdohForm />} />
                 <Route path="/successpage" exact element={<SuccessPage />} />

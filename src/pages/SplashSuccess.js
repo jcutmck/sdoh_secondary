@@ -1,4 +1,4 @@
-  import React from 'react';
+import React from 'react';
 import { SubmitButton } from '../components/Button';
 import { useNavigate } from 'react-router-dom';
 import NavigationControl from '../components/NavigationControl';

@@ -12,6 +12,7 @@ function VerifyVisit() {
     const [isLoading, setIsLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [verificationToken, setVerificationToken] = useState(null);
+    const [cspNonce, setCspNonce] = useState('');
     const [isNew, setIsNew] = useState(true);
     const [attempts, setAttempts] = useState('3');
     const [addresses, setAddresses] = useState('3');
@@ -21,6 +22,7 @@ function VerifyVisit() {
     // Determine base API URL dynamically
     const getApiUrl = process.env.REACT_APP_URL;
     
+
     //remove cached session_id if reload without being verified
     useEffect(() => {
         if (!isVerified) {
@@ -41,6 +43,7 @@ function VerifyVisit() {
         setIsSubmitting(true);
         setIsNew(false);
         const sessionId = localStorage.getItem('session_id') || 'NaN';
+        const storedNonce = localStorage.getItem('storedNonce') || 'NaN';
         const apiUrl = `${getApiUrl}/api/verify`;
         
         try {
@@ -48,7 +51,8 @@ function VerifyVisit() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Session-ID': sessionId  // Add this if you need to send Session-ID
+                    'Session-ID': sessionId,  
+                    //'X-CSP-Nonce': cspNonce // Use the nonce you stored in your app's state
                 },
                 body: JSON.stringify(formattedValues),
                 credentials: 'include'  // Ensure cookies are included in the request
@@ -61,6 +65,13 @@ function VerifyVisit() {
                 setIsVerified(true);
                 setVerificationToken(data.verificationToken);
                 localStorage.setItem('session_id', data.session_id);
+                if (data.verify_nonce) {
+                    console.log('Nonce received from Flask:', data.verify_nonce);
+                    localStorage.setItem('verifyNonce', data.verify_nonce);
+                    setCspNonce(data.verify_nonce);
+                } else {
+                    console.warn('No nonce received in the verify response');
+                }
                 setAddresses(data.addresses); // Store addresses
                 
                 // Check for security headers
@@ -102,7 +113,7 @@ function VerifyVisit() {
 
     useEffect(() => {
         window.addEventListener('load', () => {
-            setIsLoading(false);
+              setIsLoading(false);
         });
         return () => {
             window.removeEventListener('load', () => {});
@@ -116,13 +127,14 @@ function VerifyVisit() {
                 state: { 
                     isVerified: isVerified,
                     veriToken: verificationToken,
-                    addresses: addresses 
+                    addresses: addresses,
+                    verifyNonce: cspNonce
                 }   
             });
             //console.log(addresses); 
             //console.log(verificationToken);
         }
-    }, [isVerified, addresses, navigate, verificationToken]);
+    }, [isVerified, addresses, navigate, verificationToken, cspNonce]);
     
     return (
         <NavigationControl redirectPath="/">
