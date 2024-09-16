@@ -4,12 +4,15 @@ import { SubmitButton } from '../components/Button';
 import ReusableForm from '../components/FormTemplate';
 import { formatDate } from '../utils/formatDate';
 import { initialValues, fields, validationSchema } from '../resources/forms/verifyContent';
+import NavigationControl from '../components/NavigationControl';
+
 
 function VerifyVisit() {
     const [isVerified, setIsVerified] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [verificationToken, setVerificationToken] = useState(null);
+    const [cspNonce, setCspNonce] = useState('');
     const [isNew, setIsNew] = useState(true);
     const [attempts, setAttempts] = useState('3');
     const [addresses, setAddresses] = useState('3');
@@ -19,6 +22,7 @@ function VerifyVisit() {
     // Determine base API URL dynamically
     const getApiUrl = process.env.REACT_APP_URL;
     
+
     //remove cached session_id if reload without being verified
     useEffect(() => {
         if (!isVerified) {
@@ -39,6 +43,7 @@ function VerifyVisit() {
         setIsSubmitting(true);
         setIsNew(false);
         const sessionId = localStorage.getItem('session_id') || 'NaN';
+        const storedNonce = localStorage.getItem('storedNonce') || 'NaN';
         const apiUrl = `${getApiUrl}/api/verify`;
         
         try {
@@ -46,7 +51,8 @@ function VerifyVisit() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Session-ID': sessionId  // Add this if you need to send Session-ID
+                    'Session-ID': sessionId,  
+                    //'X-CSP-Nonce': cspNonce // Use the nonce you stored in your app's state
                 },
                 body: JSON.stringify(formattedValues),
                 credentials: 'include'  // Ensure cookies are included in the request
@@ -59,7 +65,26 @@ function VerifyVisit() {
                 setIsVerified(true);
                 setVerificationToken(data.verificationToken);
                 localStorage.setItem('session_id', data.session_id);
+                if (data.verify_nonce) {
+                    console.log('Nonce received from Flask:', data.verify_nonce);
+                    localStorage.setItem('verifyNonce', data.verify_nonce);
+                    setCspNonce(data.verify_nonce);
+                } else {
+                    console.warn('No nonce received in the verify response');
+                }
                 setAddresses(data.addresses); // Store addresses
+                
+                // Check for security headers
+                const csp = response.headers.get('Content-Security-Policy');
+                const xfo = response.headers.get('X-Frame-Options');
+                console.log('Content-Security-Policy:', csp);
+                console.log('X-Frame-Options:', xfo);
+
+                // You can add some logic here to handle cases where headers are missing
+                if (!csp || !xfo) {
+                    console.warn('Security headers are not set properly');
+                    //  You might want to log this or handle it in some way
+                }
             } else {
                 setIsVerified(false);
                 if (data.message === 'NO VISITS FOUND') {
@@ -88,7 +113,7 @@ function VerifyVisit() {
 
     useEffect(() => {
         window.addEventListener('load', () => {
-            setIsLoading(false);
+              setIsLoading(false);
         });
         return () => {
             window.removeEventListener('load', () => {});
@@ -102,29 +127,32 @@ function VerifyVisit() {
                 state: { 
                     isVerified: isVerified,
                     veriToken: verificationToken,
-                    addresses: addresses 
+                    addresses: addresses,
+                    verifyNonce: cspNonce
                 }   
             });
             //console.log(addresses); 
             //console.log(verificationToken);
         }
-    }, [isVerified, addresses, navigate, verificationToken]);
+    }, [isVerified, addresses, navigate, verificationToken, cspNonce]);
     
     return (
-        <div>
-            <h1 className="ml-4">Patient Visit Validation</h1>
-            {error && <div className="error ml-4">{error}</div>}
-            {attempts > 0 && attempts < 3 && <div className="tries ml-4 ">Validation attempts remaining: {attempts}</div>}
-            <ReusableForm
-                initialValues={initialValues}
-                onSubmit={handleSubmit}
-                fields={fields}
-                validationSchema={validationSchema}
-                SubmitButton={(props) => (
-                    <SubmitButton {...props} text="Verify Visit" />
-                )}
-            />
-        </div>
+        <NavigationControl redirectPath="/">
+            <div>
+                <h1 className="ml-4">Patient Visit Validation</h1>
+                {error && <div className="error ml-4">{error}</div>}
+                {attempts > 0 && attempts < 3 && <div className="tries ml-4 ">Validation attempts remaining: {attempts}</div>}
+                <ReusableForm
+                    initialValues={initialValues}
+                    onSubmit={handleSubmit}
+                    fields={fields}
+                    validationSchema={validationSchema}
+                    SubmitButton={(props) => (
+                        <SubmitButton {...props} text="Verify Visit" />
+                    )}
+                />
+            </div>
+        </NavigationControl>
     );
 }
 

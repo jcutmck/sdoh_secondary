@@ -10,9 +10,10 @@ class FormField {
   
 //Create InitialValues class and the constructor/object within
   class InitialValues {
-    constructor(mrn = '', fin = '', housingSecurity = '', foodSecurity = '', housingCondition = [], foodAccess = '', healthcareAccess = '', utilitySecurity = '', childcareAccess = '', occupationAccess = '', educationAccess = '', financialSecurity = '', physicalSecurity = '', emotionalSecurity = '', safetySecurity = '', wellbeingSecurity = '', requestHelp = '') {
+    constructor(mrn = '', fin = '', sdohConsent ='', housingSecurity = '', foodSecurity = '', housingCondition = [], foodAccess = '', healthcareAccess = '', utilitySecurity = '', childcareAccess = '', occupationAccess = '', educationAccess = '', financialSecurity = '', physicalSecurity = '', emotionalSecurity = '', safetySecurity = '', wellbeingSecurity = '', requestHelp = '') {
       this.mrn = mrn;
       this.fin = fin;
+      this.sdohConsent = sdohConsent;
       this.housingSecurity = housingSecurity;
       this.foodSecurity = foodSecurity;
       this.housingCondition = housingCondition;
@@ -37,6 +38,15 @@ class FormField {
   
   //Create fields object and fill with instances of the FormField class for each field. Builds out the questions(fields) and possible answers
   const fields = [
+    new FormField(
+        'sdohConsent',
+        'I consent to UT Medical Center and its affiliates to share the information I provide herein with local agencies to assist in identifying available resources. I further consent to allow the local agency or agencies to contact me to assist me with accommodating identified needs.',
+        'radio',
+        [
+          { value: 'Patient consents', label: 'Patient consents' },
+          { value: 'Patient does not consent', label: 'Patient does not consent' },
+        ]
+      ),
     new FormField(
         'housingSecurity',
         'Are you worried or concerned that in the next two months you may not have stable housing that you own, rent, or stay in as a part of a household?',
