@@ -106,14 +106,14 @@ import '../resources/formStyles.css' ;
               );
             })}
           {SubmitButton ? (
-            <SubmitButton onClick={submitForm} className="form-button" text={buttonText} />
+            <SubmitButton onClick={submitForm} className="form-button ml-4" text={buttonText} />
           ) : (
             <Button
               type="button"
               onClick={submitForm}
               variant="contained"
               color="primary"
-              className="form-button"
+              className="form-button ml-4"
             >
             </Button>
           )}

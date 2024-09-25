@@ -7,14 +7,14 @@ const InvalidPage = () => {
   const navigate = useNavigate();
 
   const handleHome = () => {
-    navigate('/'); // Navigate to the home page
+    navigate('/sdoh'); // Navigate to the home page
   };
 
   return (
     <NavigationControl redirectPath="/">
       <div>
-        <h1>You have reached the maximum validation attempts. Please speak with a UT Medical Center team member to validate your visit information.</h1>
-        <SubmitButton text="Return Home" onClick={handleHome} />
+        <h1>You have reached the maximum validation attempts. Please speak with a UT Medical Center team member to validate your visit information or try again.</h1>
+        <SubmitButton className="ml-4" text="Return Home" onClick={handleHome} />
       </div>
     </NavigationControl>
   );

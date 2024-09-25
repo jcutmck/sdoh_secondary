@@ -5,7 +5,7 @@ import ReusableForm from '../components/FormTemplate';
 import { formatDate } from '../utils/formatDate';
 import { initialValues, fields, validationSchema } from '../resources/forms/verifyContent';
 import NavigationControl from '../components/NavigationControl';
-
+import ProgressBar from '../components/ProgressBar';
 
 function VerifyVisit() {
     const [isVerified, setIsVerified] = useState(false);
@@ -139,7 +139,8 @@ function VerifyVisit() {
     return (
         <NavigationControl redirectPath="/">
             <div>
-                <h1 className="ml-4">Patient Visit Validation</h1>
+                <ProgressBar />
+                <h1 className="ml-4 font-bold" >Patient Visit Validation</h1>
                 {error && <div className="error ml-4">{error}</div>}
                 {attempts > 0 && attempts < 3 && <div className="tries ml-4 ">Validation attempts remaining: {attempts}</div>}
                 <ReusableForm

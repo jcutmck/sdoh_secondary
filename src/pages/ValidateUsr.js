@@ -5,6 +5,8 @@ import ReusableForm from '../components/FormTemplate';
 import { FormField, InitialValues, initialValues, validationSchema } from '../resources/forms/validateContent';
 import { string } from 'yup';
 import NavigationControl from '../components/NavigationControl';
+import ProgressBar from '../components/ProgressBar';
+
 
 
 function ValidateUsr() {   
@@ -99,7 +101,8 @@ function ValidateUsr() {
     return (
         <NavigationControl redirectPath="/">
             <div>
-                <h1>Please choose an address where you live or have lived:</h1>
+                <ProgressBar />;
+                <h1 className="ml-4 font-bold">Please choose an address where you live or have lived:</h1>
                 {!isLoading && addresses.length > 0 ? (
                 <ReusableForm
                     initialValues={initialValues}
