@@ -48,18 +48,7 @@ class FormField {
           { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
       ),
-    new FormField(
-        'foodSecurity',
-        'Within the past 12 months, have you worried that your food would run out before you had enough money to buy more?',
-        'radio',
-        [
-            { value: 'Often true', label: 'Often true' },
-            { value: 'Sometimes true', label: 'Sometimes true' },
-            { value: 'Never true', label: 'Never true' },
-            { value: 'I choose not to answer', label: 'I choose not to answer' },
-        ]
-    ),
-    new FormField(
+      new FormField(
         'housingCondition',
         'Think about the place you live. Do you have problems with  any of the following? ',
         'checkbox',
@@ -75,6 +64,17 @@ class FormField {
             { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),  
+      new FormField(
+        'foodSecurity',
+        'Within the past 12 months, have you worried that your food would run out before you had enough money to buy more?',
+        'radio',
+        [
+            { value: 'Often true', label: 'Often true' },
+            { value: 'Sometimes true', label: 'Sometimes true' },
+            { value: 'Never true', label: 'Never true' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
+        ]
+    ),
     new FormField(
         'foodAccess',
         'Within the past 12 months, the food you bought did not last and you did not have money to get more.',
@@ -202,6 +202,38 @@ class FormField {
             { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),
+    new FormField(
+        'legalStatus',
+        'In the past year, have you spent more than 2 nights in a row in a jail, prison, detention center or juvenile correction facility?',
+        'radio',
+        [
+            { value: 'Yes', label: 'Yes' },
+            { value: 'No', label: 'No' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
+        ]
+    ),    
+    new FormField(
+        'refugeSecurity',
+        'Are you a refugee?',
+        'radio',
+        [
+            { value: 'Yes', label: 'Yes' },
+            { value: 'No', label: 'No' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
+        ]
+    ),    
+    new FormField(
+        'militaryService',
+        'Military Status:',
+        'radio',
+        [
+            { value: 'Does not apply', label: 'Does not apply' },
+            { value: 'Active service', label: 'Active service' },
+            { value: 'Veteran/Honorably discharged', label: 'Veteran/Honorably discharged' },
+            { value: 'Veteran/Dishonorably discharged', label: 'Veteran/Dishonorably discharged' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
+        ]
+    ),    
     new FormField(
         'requestHelp',
         'Would you like help with any of these needs?',

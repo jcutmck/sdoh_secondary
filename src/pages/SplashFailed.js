@@ -11,10 +11,10 @@ const FailedPage = () => {
   };
 
   return (
-    <NavigationControl redirectPath="/">
+    <NavigationControl redirectPath="/sdoh">
       <div>
         <h1>"Sorry! Your form submission failed, please try again."</h1>
-        <SubmitButton text="Return Home" onClick={handleHome} />
+        <SubmitButton className="ml-4" text="Return Home" onClick={handleHome} />
       </div>
     </NavigationControl>
   );
