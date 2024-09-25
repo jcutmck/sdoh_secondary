@@ -10,10 +10,9 @@ class FormField {
   
 //Create InitialValues class and the constructor/object within
   class InitialValues {
-    constructor(mrn = '', fin = '', sdohConsent ='', housingSecurity = '', foodSecurity = '', housingCondition = [], foodAccess = '', healthcareAccess = '', utilitySecurity = '', childcareAccess = '', occupationAccess = '', educationAccess = '', financialSecurity = '', physicalSecurity = '', emotionalSecurity = '', safetySecurity = '', wellbeingSecurity = '', requestHelp = '') {
+    constructor(mrn = '', fin = '', housingSecurity = '', foodSecurity = '', housingCondition = [], foodAccess = '', healthcareAccess = '', utilitySecurity = '', childcareAccess = '', occupationAccess = '', educationAccess = '', financialSecurity = '', physicalSecurity = '', emotionalSecurity = '', safetySecurity = '', wellbeingSecurity = '', requestHelp = '', sdohConsentProgram ='', sdohConsentHelp =''  ) {
       this.mrn = mrn;
       this.fin = fin;
-      this.sdohConsent = sdohConsent;
       this.housingSecurity = housingSecurity;
       this.foodSecurity = foodSecurity;
       this.housingCondition = housingCondition;
@@ -29,7 +28,8 @@ class FormField {
       this.safetySecurity = safetySecurity;
       this.wellbeingSecurity = wellbeingSecurity;
       this.requestHelp = requestHelp;
-      
+      this.sdohConsentProgram = sdohConsentProgram;
+      this.sdohConsentHelp = sdohConsentHelp;
     }
   }
   
@@ -38,15 +38,6 @@ class FormField {
   
   //Create fields object and fill with instances of the FormField class for each field. Builds out the questions(fields) and possible answers
   const fields = [
-    new FormField(
-        'sdohConsent',
-        'I consent to UT Medical Center and its affiliates to share the information I provide herein with local agencies to assist in identifying available resources. I further consent to allow the local agency or agencies to contact me to assist me with accommodating identified needs.',
-        'radio',
-        [
-          { value: 'Patient consents', label: 'Patient consents' },
-          { value: 'Patient does not consent', label: 'Patient does not consent' },
-        ]
-      ),
     new FormField(
         'housingSecurity',
         'Are you worried or concerned that in the next two months you may not have stable housing that you own, rent, or stay in as a part of a household?',
@@ -62,9 +53,9 @@ class FormField {
         'Within the past 12 months, have you worried that your food would run out before you had enough money to buy more?',
         'radio',
         [
-            { value: 'Often True', label: 'Often True' },
-            { value: 'Sometimes True', label: 'Sometimes True' },
-            { value: 'Never True', label: 'Never True' },
+            { value: 'Often true', label: 'Often true' },
+            { value: 'Sometimes true', label: 'Sometimes true' },
+            { value: 'Never true', label: 'Never true' },
             { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),
@@ -89,9 +80,9 @@ class FormField {
         'Within the past 12 months, the food you bought did not last and you did not have money to get more.',
         'radio',
         [
-            { value: 'Often True', label: 'Often True' },
-            { value: 'Sometimes True', label: 'Sometimes True' },
-            { value: 'Never True', label: 'Never True' },
+            { value: 'Often true', label: 'Often true' },
+            { value: 'Sometimes true', label: 'Sometimes true' },
+            { value: 'Never true', label: 'Never true' },
             { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),
@@ -138,7 +129,7 @@ class FormField {
     ),  
     new FormField(
         'educationAccess',
-        'Do you have a high school degree?',
+        'Do you have a high school diploma?',
         'radio',
         [
             { value: 'Yes', label: 'Yes' },
@@ -154,7 +145,7 @@ class FormField {
             { value: 'Never', label: 'Never' },
             { value: 'Rarely', label: 'Rarely' },
             { value: 'Sometimes', label: 'Sometimes' },
-            { value: 'Fairly Often', label: 'Fairly Often' },
+            { value: 'Fairly often', label: 'Fairly often' },
             { value: 'Frequently', label: 'Frequently' },
             { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
@@ -167,7 +158,7 @@ class FormField {
             { value: 'Never', label: 'Never' },
             { value: 'Rarely', label: 'Rarely' },
             { value: 'Sometimes', label: 'Sometimes' },
-            { value: 'Fairly Often', label: 'Fairly Often' },
+            { value: 'Fairly often', label: 'Fairly often' },
             { value: 'Frequently', label: 'Frequently' },
             { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
@@ -180,7 +171,7 @@ class FormField {
             { value: 'Never', label: 'Never' },
             { value: 'Rarely', label: 'Rarely' },
             { value: 'Sometimes', label: 'Sometimes' },
-            { value: 'Fairly Often', label: 'Fairly Often' },
+            { value: 'Fairly often', label: 'Fairly often' },
             { value: 'Frequently', label: 'Frequently' },
             { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
@@ -193,7 +184,7 @@ class FormField {
             { value: 'Never', label: 'Never' },
             { value: 'Rarely', label: 'Rarely' },
             { value: 'Sometimes', label: 'Sometimes' },
-            { value: 'Fairly Often', label: 'Fairly Often' },
+            { value: 'Fairly often', label: 'Fairly often' },
             { value: 'Frequently', label: 'Frequently' },
             { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
@@ -206,7 +197,7 @@ class FormField {
             { value: 'Never', label: 'Never' },
             { value: 'Rarely', label: 'Rarely' },
             { value: 'Sometimes', label: 'Sometimes' },
-            { value: 'Fairly Often', label: 'Fairly Often' },
+            { value: 'Fairly often', label: 'Fairly often' },
             { value: 'Frequently', label: 'Frequently' },
             { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
@@ -220,7 +211,25 @@ class FormField {
             { value: 'No', label: 'No' },
             { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
-    ),      
+    ),
+    new FormField(
+        'sdohConsentProgram',
+        'I consent to allowing UT Medical Center and its affiliates to share the information I provide with local agencies and applicable health plans to assist in developing resource programs.',
+        'radio',
+        [
+          { value: 'Patient consents', label: 'Patient consents' },
+          { value: 'Patient does not consent', label: 'Patient does not consent' },
+        ]
+      ),
+      new FormField(
+        'sdohConsentHelp',
+        'I consent to UT Medical Center and its affiliates to share the information I provide herein with local agencies to assist in identifying available resources. I further consent to allow the local agency or agencies to contact me to assist me with accommodating identified needs.',
+        'radio',
+        [
+          { value: 'Patient consents', label: 'Patient consents' },
+          { value: 'Patient does not consent', label: 'Patient does not consent' },
+        ]
+      ),      
   ];
   
   export { initialValues, fields };
