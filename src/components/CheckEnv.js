@@ -1,4 +1,4 @@
-// src/components/CheckEnv.js
+// CheckEnv.js (Functional Component)
 import React, { useEffect } from 'react';
 
 /* Code for app.js when testing environment checker

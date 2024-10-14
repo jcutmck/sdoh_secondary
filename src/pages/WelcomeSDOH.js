@@ -10,7 +10,7 @@ const SDOHWelcome = () => {
     navigate('/sdoh'); // Navigate to the home page
   };
 
-  console.log("FE-Ver: VERSION 1.13")
+  console.log("FE-Ver: VERSION 1.25")
   return (
     <NavigationControl redirectPath="/">
       <div>

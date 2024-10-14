@@ -10,9 +10,10 @@ class FormField {
   
 //Create InitialValues class and the constructor/object within
   class InitialValues {
-    constructor(mrn = '', fin = '', housingSecurity = '', foodSecurity = '', housingCondition = [], foodAccess = '', healthcareAccess = '', utilitySecurity = '', childcareAccess = '', occupationAccess = '', educationAccess = '', financialSecurity = '', physicalSecurity = '', emotionalSecurity = '', safetySecurity = '', wellbeingSecurity = '', requestHelp = '', sdohConsentProgram ='', sdohConsentHelp =''  ) {
+    constructor(mrn = '', fin = '', participation = '', housingSecurity = '', foodSecurity = '', housingCondition = [], foodAccess = '', healthcareAccess = '', utilitySecurity = '', childcareAccess = '', occupationAccess = '', educationAccess = '', financialSecurity = '', physicalSecurity = '', emotionalSecurity = '', safetySecurity = '', wellbeingSecurity = '', requestHelp = '', sdohConsentProgram ='', sdohConsentHelp =''  ) {
       this.mrn = mrn;
       this.fin = fin;
+      this.participation = participation;
       this.housingSecurity = housingSecurity;
       this.foodSecurity = foodSecurity;
       this.housingCondition = housingCondition;
@@ -38,6 +39,15 @@ class FormField {
   
   //Create fields object and fill with instances of the FormField class for each field. Builds out the questions(fields) and possible answers
   const fields = [
+    new FormField(
+        'participation',
+        'Please answer a few questions about your life.',
+        'radio',
+        [
+          { value: 'I choose to participate', label: 'I choose to participate' },
+          { value: 'I choose not to participate', label: 'I choose not to participate' },
+        ]
+      ),
     new FormField(
         'housingSecurity',
         'Are you worried or concerned that in the next two months you may not have stable housing that you own, rent, or stay in as a part of a household?',
@@ -239,27 +249,27 @@ class FormField {
         'Would you like help with any of these needs?',
         'radio',
         [
-            { value: 'Yes', label: 'Yes' },
-            { value: 'No', label: 'No' },
-            { value: 'I choose not to answer', label: 'I choose not to answer' },
+            { value: 'YES', label: 'Yes' },
+            { value: 'no', label: 'No' },
+            { value: 'I choose not to participate', label: 'I choose not to participate' },
         ]
     ),
     new FormField(
         'sdohConsentProgram',
-        'I consent to allowing UT Medical Center and its affiliates to share the information I provide with local agencies and applicable health plans to assist in developing resource programs.',
+        'I agree to let UT Medical Center and its affiliates share the information I give here with local groups to help find resources for me.',
         'radio',
         [
-          { value: 'Patient consents', label: 'Patient consents' },
-          { value: 'Patient does not consent', label: 'Patient does not consent' },
+          { value: 'I agree', label: 'I agree' },
+          { value: 'I do not agree', label: 'I do not agree' },
         ]
       ),
       new FormField(
         'sdohConsentHelp',
-        'I consent to UT Medical Center and its affiliates to share the information I provide herein with local agencies to assist in identifying available resources. I further consent to allow the local agency or agencies to contact me to assist me with accommodating identified needs.',
+        'I agree to let UT Medical Center share the information I give here with its affiliates to better understand community needs.',
         'radio',
         [
-          { value: 'Patient consents', label: 'Patient consents' },
-          { value: 'Patient does not consent', label: 'Patient does not consent' },
+          { value: 'I agree', label: 'I agree' },
+          { value: 'I do not agree', label: 'I do not agree' },
         ]
       ),      
   ];
