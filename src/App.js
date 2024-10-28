@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { CacheProvider } from '@emotion/react';
 import VerifyVisit from './pages/VerifyVisit';
 import SdohForm from './pages/SdohForm';
@@ -12,6 +12,7 @@ import InvalidPage from './pages/SplashInvalid';
 import SDOHWelcome from './pages/WelcomeSDOH';
 import Layout from '../src/components/Layout';
 import createEmotionCache from '../src/components/EmotionCache'; // You'll need to create this file
+//<Route path="/" exact element={<SDOHWelcome />} />
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -24,8 +25,8 @@ function App({ emotionCache = clientSideEmotionCache }) {
           <Router>
             <Layout>
               <Routes>
+                <Route path="/" element={<Navigate to="/sdoh" replace />} /> {/* Redirect root to /sdoh */}
                 <Route path="/sdoh" exact element={<VerifyVisit />} />
-                <Route path="/" exact element={<SDOHWelcome />} />
                 <Route path="/validateusr" exact element={<ValidateUsr />} />
                 <Route path="/utform" exact element={<SdohForm />} />
                 <Route path="/successpage" exact element={<SuccessPage />} />

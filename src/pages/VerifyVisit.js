@@ -136,6 +136,7 @@ function VerifyVisit() {
         }
     }, [isVerified, addresses, navigate, verificationToken, cspNonce]);
     
+    console.log("FE-Ver: VERSION 1.30")
     return (
         <NavigationControl redirectPath="/">
             <div>
@@ -151,6 +152,7 @@ function VerifyVisit() {
                     SubmitButton={(props) => (
                         <SubmitButton {...props} text="Verify Visit" />
                     )}
+                    showSubmit={true} // Always show submit for the verify form
                 />
             </div>
         </NavigationControl>

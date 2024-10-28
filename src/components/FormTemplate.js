@@ -1,4 +1,4 @@
-// ReusableForm.js
+// ReusableForm.js (Class Component)
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { TextField, CheckboxWithLabel, RadioGroup } from 'formik-mui';
@@ -7,10 +7,11 @@ import FormikDateField from './FormikDateField';
 import '../resources/formStyles.css' ;
 
 
-  const ReusableForm = ({ initialValues = {}, onSubmit, fields = [], SubmitButton, buttonText, validationSchema }) => {
+  const ReusableForm = ({ initialValues = {}, currentValues = {}, onSubmit, fields = [], SubmitButton, buttonText, validationSchema, showSubmit }) => {
+    const initialVals = {...initialValues, ...currentValues}
     return (
       <Formik
-        initialValues={initialValues}
+        initialValues={initialVals}
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
@@ -105,18 +106,24 @@ import '../resources/formStyles.css' ;
                 />
               );
             })}
-          {SubmitButton ? (
-            <SubmitButton onClick={submitForm} className="form-button ml-4" text={buttonText} />
-          ) : (
-            <Button
-              type="button"
-              onClick={submitForm}
-              variant="contained"
-              color="primary"
-              className="form-button ml-4"
-            >
-            </Button>
-          )}
+        
+        {showSubmit && ( // Conditionally render the submit button
+          <div className="submit-button-container"> {/* Add a container for better styling */}   
+            {SubmitButton ? (
+              <SubmitButton onClick={submitForm} className="form-button ml-4" text={buttonText} />
+            ) : (
+             <Button
+                type="button"
+                onClick={submitForm}
+                variant="contained"
+                color="primary"
+                className="form-button ml-4"
+              >
+                {buttonText || 'Submit'}
+              </Button>
+            )}
+          </div>
+         )}
         </Form>
       )}
     </Formik>

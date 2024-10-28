@@ -112,6 +112,7 @@ function ValidateUsr() {
                     SubmitButton={(props) => (
                         <SubmitButton {...props} text="SUBMIT" />
                     )}
+                    showSubmit={true} // Always show submit for the validate form
                 />
             ) : (
                     <p>Loading verification question...</p>
