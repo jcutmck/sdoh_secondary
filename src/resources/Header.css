@@ -12,12 +12,28 @@
   width: 100%;
   background-color: #fff; /* Adjust as necessary */
   z-index: 1000; /* Ensures it is above other content */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align items to the left */
+}
+
+.header-content { 
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 100%; 
 }
 
 .logo img {
   height: 8em; /* Adjust as necessary */
   margin-left: 1em; /* Adjust as necessary */
 }
+
+.progress-bar { /* Add this for the progress bar */
+  width: 100%; 
+  display: flex;
+  justify-content: left; /* Center the progress bar */
+} 
 
 @keyframes App-logo-spin {
   from {

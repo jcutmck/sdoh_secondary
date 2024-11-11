@@ -26,7 +26,7 @@ function App({ emotionCache = clientSideEmotionCache }) {
             <Layout>
               <Routes>
                 <Route path="/" element={<Navigate to="/sdoh" replace />} /> {/* Redirect root to /sdoh */}
-                <Route path="/sdoh" exact element={<VerifyVisit />} />
+                <Route path="/sdoh" element={<VerifyVisit />} />
                 <Route path="/validateusr" exact element={<ValidateUsr />} />
                 <Route path="/utform" exact element={<SdohForm />} />
                 <Route path="/successpage" exact element={<SuccessPage />} />

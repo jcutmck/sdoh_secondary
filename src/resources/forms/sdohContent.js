@@ -261,6 +261,7 @@ class FormField {
         [
           { value: 'I agree', label: 'I agree' },
           { value: 'I do not agree', label: 'I do not agree' },
+          { value: 'Does not apply', label: 'Does not apply' },
         ]
       ),
       new FormField(
@@ -270,6 +271,7 @@ class FormField {
         [
           { value: 'I agree', label: 'I agree' },
           { value: 'I do not agree', label: 'I do not agree' },
+          { value: 'Does not apply', label: 'Does not apply' },
         ]
       ),      
   ];

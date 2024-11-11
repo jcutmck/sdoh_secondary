@@ -6,6 +6,8 @@ import { formatDate } from '../utils/formatDate';
 import { initialValues, fields, validationSchema } from '../resources/forms/verifyContent';
 import NavigationControl from '../components/NavigationControl';
 import ProgressBar from '../components/ProgressBar';
+import { useTranslation } from 'react-i18next';
+
 
 function VerifyVisit() {
     const [isVerified, setIsVerified] = useState(false);
@@ -18,6 +20,9 @@ function VerifyVisit() {
     const [addresses, setAddresses] = useState('3');
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+
+    // setting t object for translation utility 
+    const { t, i18n } = useTranslation();
 
     // Determine base API URL dynamically
     const getApiUrl = process.env.REACT_APP_URL;
@@ -136,12 +141,12 @@ function VerifyVisit() {
         }
     }, [isVerified, addresses, navigate, verificationToken, cspNonce]);
     
-    console.log("FE-Ver: VERSION 1.30")
+    console.log("FE-Ver: VERSION 1.39.7")
     return (
         <NavigationControl redirectPath="/">
             <div>
-                <ProgressBar />
-                <h1 className="ml-4 font-bold" >Patient Visit Validation</h1>
+
+                <h1 className="ml-4 font-bold" >{t('ptvalidtitle')}</h1>
                 {error && <div className="error ml-4">{error}</div>}
                 {attempts > 0 && attempts < 3 && <div className="tries ml-4 ">Validation attempts remaining: {attempts}</div>}
                 <ReusableForm
