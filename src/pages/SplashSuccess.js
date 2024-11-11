@@ -2,14 +2,17 @@ import { React, useState } from 'react';
 import { SubmitButton } from '../components/Button';
 import { useNavigate } from 'react-router-dom';
 import NavigationControl from '../components/NavigationControl';
-import ProgressBar from '../components/ProgressBar';
+import { useTranslation } from 'react-i18next';
 
 
 const SuccessPage = () => {
   const navigate = useNavigate();
 
   const [isClosing, setIsClosing] = useState(false);
-
+  
+  // setting t object for translation utility 
+  const { t, i18n } = useTranslation();
+  
   /*const handleClose = () => {
     setIsClosing(true);
 
@@ -32,8 +35,18 @@ const SuccessPage = () => {
   return (
     <NavigationControl redirectPath="/">
       <div>
-        <ProgressBar />
         <h1 className="ml-4 font-bold">Forms submitted successfully, thank you!</h1>
+        <div className="help-resources"> 
+          <div className="h-4" /> {/* Blank row/space */}
+          <p className="ml-4 max-w-[60em] break-words">{t('helpresource1')}</p>
+          <div className="h-4" /> {/* Another blank row/space */}
+          <p className="ml-4 max-w-[60em] break-words">{t('helpresource2')}</p>
+          <div className="h-4" /> {/* Another blank row/space */}
+          <p className="ml-4 max-w-[60em] break-words">{t('helpresource3')}</p>
+          <div className="h-4" /> {/* Another blank row/space */}
+          <p className="ml-4 max-w-[60em] break-words">{t('helpresource4')}</p>
+          <div className="h-4" /> {/* Another blank row/space */}
+        </div>
         <h1 className="ml-4 italic">You may now close this browser window.</h1>
 
         

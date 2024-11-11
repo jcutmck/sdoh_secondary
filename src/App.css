@@ -13,6 +13,10 @@
   color: white;
 }
 
+.App-body {
+  padding-top: 10em; /* Adjust the value as needed */
+}
+
 .App-link {
   color: #61dafb;
 }

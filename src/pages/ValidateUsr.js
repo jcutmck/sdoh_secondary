@@ -5,18 +5,19 @@ import ReusableForm from '../components/FormTemplate';
 import { FormField, InitialValues, initialValues, validationSchema } from '../resources/forms/validateContent';
 import { string } from 'yup';
 import NavigationControl from '../components/NavigationControl';
-import ProgressBar from '../components/ProgressBar';
-
-
+import { useTranslation } from 'react-i18next';
 
 function ValidateUsr() {   
 
     const [isLoading, setIsLoading] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);   
-//    const [addresses, setAddresses] = useState([]);
     const [fields, setFields] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
+
+    // setting t object for translation utility 
+    const { t, i18n } = useTranslation();  
+    //console.log(i18n);
 
     // Destructure the state, providing default values in case state is undefined
     const {isVerified, veriToken, addresses, verifyNonce } = location.state || {};
@@ -101,8 +102,7 @@ function ValidateUsr() {
     return (
         <NavigationControl redirectPath="/">
             <div>
-                <ProgressBar />;
-                <h1 className="ml-4 font-bold">Please choose an address where you live or have lived:</h1>
+                <h1 className="ml-4 font-bold">{t('verifyaddress')}</h1>
                 {!isLoading && addresses.length > 0 ? (
                 <ReusableForm
                     initialValues={initialValues}

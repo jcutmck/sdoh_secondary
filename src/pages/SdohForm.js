@@ -4,12 +4,18 @@ import { SubmitButton } from '../components/Button';
 import ReusableForm from '../components/FormTemplate';
 import { initialValues, fields } from '../resources/forms/sdohContent';
 import NavigationControl from '../components/NavigationControl';
-import ProgressBar from '../components/ProgressBar';
+//import ProgressBar from '../components/ProgressBar';
+//import LanguageSwitcher from '../components/LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
+
 
 function UtSdoh() {   
-
     // react & router functions
     const navigate = useNavigate();
+
+    // setting t object for translation utility 
+    const { t, i18n } = useTranslation();  
+    //console.log(i18n);
     
     // form activity statuses
     const [isLoading, setIsLoading] = useState(true);
@@ -146,17 +152,16 @@ function UtSdoh() {
     return (
         <NavigationControl redirectPath="/">
             <div>
-                <ProgressBar />
-                <h1 className="ml-4 mb-2 font-bold" >Welcome to the University of Tennessee!</h1>
-                <h1 className="ml-4 mt-4 font-bold">Social Determinants of Health Form</h1>
+                <h1 className="ml-4 mb-2 font-bold" >{t('welcome1')}</h1>
+                <h1 className="ml-4 mt-4 font-bold">{t('sdohformname')}</h1>
                
                 {!showForm && ( // Show participation question first
                     <>
                         <div className="instructions"> 
                             <div className="h-4" /> {/* Blank row/space */}
-                            <p className="ml-4 max-w-[60em] break-words">Many living and working conditions can impact your health. At The University of Tennessee Medical Center, we're committed to better understanding our patients where they live, work, and play.</p>
+                            <p className="ml-4 max-w-[60em] break-words">{t('introtext1')}</p>
                             <div className="h-4" /> {/* Another blank row/space */}
-                            <p className="ml-4 max-w-[60em] break-words">By taking a moment to answer some questions, you'll contribute to the development of valuable resources that will benefit our patients in the future.</p>
+                            <p className="ml-4 max-w-[60em] break-words">{t('introtext2')}</p>
                             <div className="h-4" /> {/* Another blank row/space */}
                         </div>
                         <ReusableForm

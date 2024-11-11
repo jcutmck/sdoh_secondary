@@ -5,10 +5,14 @@ import { TextField, CheckboxWithLabel, RadioGroup } from 'formik-mui';
 import { Button, Radio, FormControl, FormLabel, FormControlLabel, FormGroup } from '@mui/material';
 import FormikDateField from './FormikDateField';
 import '../resources/formStyles.css' ;
-
-
+import { useTranslation } from 'react-i18next';
+  
+  
   const ReusableForm = ({ initialValues = {}, currentValues = {}, onSubmit, fields = [], SubmitButton, buttonText, validationSchema, showSubmit }) => {
+    
     const initialVals = {...initialValues, ...currentValues}
+    const { t } = useTranslation();
+    
     return (
       <Formik
         initialValues={initialVals}
@@ -18,7 +22,18 @@ import '../resources/formStyles.css' ;
         {({ isSubmitting, submitForm, setFieldValue, values }) => (
           <Form className="form-container">
             {fields.map((field, index) => {
+              // ___________________ Translate the field label:
+              const fieldLabel = t(field.label); 
 
+              // 2. Translate options (if the field has options):
+              let options = field.options || []; 
+              if (field.type === 'radio' || field.type === 'checkbox') {
+                options = options.map(option => ({
+                  ...option,
+                  label: `${field.name}.options.${option.value}`
+                }));
+              }          
+              
               // Ensure the field object has a type property
               if (!field || !field.type) {
                 console.error(`Field at index ${index} is missing required properties`, field);
@@ -30,7 +45,7 @@ import '../resources/formStyles.css' ;
                   <FormikDateField
                     key={index}
                     name={field.name}
-                    label={field.label}
+                    label={fieldLabel}
                   />
                 );
               } else if (field.type === 'radio') {
@@ -42,7 +57,7 @@ import '../resources/formStyles.css' ;
                 }
                 return (
                   <FormControl key={index} component="fieldset">
-                    <FormLabel component="legend">{field.label}</FormLabel>
+                    <FormLabel component="legend">{fieldLabel}</FormLabel>
                     <Field
                       key={index}
                       component={RadioGroup}
@@ -98,11 +113,11 @@ import '../resources/formStyles.css' ;
                   key={index}
                   component={TextField}
                   name={field.name}
-                  label={field.label}
+                  label={fieldLabel}
                   fullWidth
                   margin="normal"
                   className="form-field"
-                  helperText={field.helperText || ''}
+                  helperText={t(field.helperText) || ''}
                 />
               );
             })}

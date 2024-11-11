@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Box, Stepper, Step, StepLabel, styled } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 // Create a styled Stepper component to control its size
 const StyledStepper = styled(Stepper)(({ theme }) => ({
@@ -15,7 +16,10 @@ const StyledStepper = styled(Stepper)(({ theme }) => ({
 function ProgressBar() {
   const location = useLocation();
   const [activeStep, setActiveStep] = useState(0);
-
+    
+  // setting t object for translation utility 
+    const { t } = useTranslation();
+    
   useEffect(() => {
     // Map the current path to the corresponding step
     switch (location.pathname) {
@@ -36,13 +40,13 @@ function ProgressBar() {
     }
   }, [location]);
 
-  // University of Tennessee orange color
+  // Univ TN Orange
   const utOrange = '#F77F00'; 
-
+  //{label}
+  
   return (
-    <Box sx={{ width: '40%', marginTop: 2 }}>
+
       <StyledStepper activeStep={activeStep} alternativeLabel>
-        {/* Render the steps with labels */}
         {['Welcome', 'Verify Visit', 'Validate Patient', 'Document Form', 'All Done!'].map((label, index) => (
           <Step key={index}>
             <StepLabel sx={{
@@ -52,12 +56,11 @@ function ProgressBar() {
             }}
             onClick={(event) => event.preventDefault()}
             >
-              {label}
+              {t(`progressBar.steps.${label}`)}
             </StepLabel>
           </Step>
         ))}
       </StyledStepper>
-    </Box>
   );
 }
 
