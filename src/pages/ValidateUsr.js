@@ -16,7 +16,7 @@ function ValidateUsr() {
     const location = useLocation();
 
     const { t, i18n } = useTranslation();  
-    //console.log(i18n);
+
 
     // Destructure the state, providing default values in case state is undefined
     const {isVerified, veriToken, addresses, verifyNonce } = location.state || {};
@@ -39,7 +39,6 @@ function ValidateUsr() {
             setFields(addressFields);
             setIsLoading(false);
         } else {
-            // Handle case where addresses are not provided
             navigate('/SdohForm');
         }
     }, [location, navigate]);
@@ -48,18 +47,15 @@ function ValidateUsr() {
 
     const handleSubmit  = async (values) => {
         const sessionId = localStorage.getItem('session_id');
-        console.log('Session ID:', sessionId);
-        console.log('Token:', veriToken);
-        console.log('verifyNonce:', verifyNonce);
         setIsSubmitting(true);
         const apiUrl = `${getApiUrl}/api/validate`;
-        //console.log('API URL:', apiUrl);
+        /*
         console.log('Headers being sent:', {
             'Content-Type': 'application/json',
             'Session-ID': sessionId,
             'Verification-Token': veriToken,
             'X-CSP-Nonce': verifyNonce,
-          });
+          });*/
         try {
             const response = await fetch(apiUrl, {
                 method: 'POST',
@@ -88,7 +84,6 @@ function ValidateUsr() {
             navigate('/utform', { replace: true });    
         } catch(error) {
             console.error('Error:', error);
-            console.log("Failure on React Side");
             navigate('/validationfail', { replace: true });
         } finally {
             setIsSubmitting(false);

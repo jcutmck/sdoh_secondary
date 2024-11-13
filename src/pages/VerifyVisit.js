@@ -34,7 +34,6 @@ function VerifyVisit() {
             localStorage.removeItem('session_id');
             setIsNew(true);
             setAttempts('3');
-            //console.log('Session ID cleared');
         }
     }, [isVerified]);
 
@@ -62,30 +61,18 @@ function VerifyVisit() {
             });
 
             const data = await response.json();
-            //console.log(data);
 
             if (response.ok && data.isVerified) {
                 setIsVerified(true);
                 setVerificationToken(data.verificationToken);
                 localStorage.setItem('session_id', data.session_id);
                 if (data.verify_nonce) {
-                    console.log('Nonce received from Flask:', data.verify_nonce);
                     localStorage.setItem('verifyNonce', data.verify_nonce);
                     setCspNonce(data.verify_nonce);
                 } else {
                     console.warn('No nonce received in the verify response');
                 }
                 setAddresses(data.addresses);
-                
-                // security headers
-                const csp = response.headers.get('Content-Security-Policy');
-                const xfo = response.headers.get('X-Frame-Options');
-                console.log('Content-Security-Policy:', csp);
-                console.log('X-Frame-Options:', xfo);
-
-                if (!csp || !xfo) {
-                    console.warn('Security headers are not set properly');
-                }
             } else {
                 setIsVerified(false);
                 if (data.message === 'NO VISITS FOUND') {
@@ -108,11 +95,7 @@ function VerifyVisit() {
         }
     };
 
-    useEffect(() => {
-        //console.log('Attempts remaining:', attempts);
-    }, [attempts]);
-
-    useEffect(() => {
+     useEffect(() => {
         window.addEventListener('load', () => {
               setIsLoading(false);
         });
@@ -131,12 +114,11 @@ function VerifyVisit() {
                     verifyNonce: cspNonce
                 }   
             });
-            //console.log(addresses); 
-            //console.log(verificationToken);
+
         }
     }, [isVerified, addresses, navigate, verificationToken, cspNonce]);
     
-    console.log("V1.4.0")
+    console.log("v1.0")
     return (
         <NavigationControl redirectPath="/">
             <div>

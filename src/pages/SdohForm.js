@@ -8,12 +8,10 @@ import { useTranslation } from 'react-i18next';
 
 
 function UtSdoh() {   
-    // react & router functions
     const navigate = useNavigate();
 
     // setting t object for translation utility 
     const { t, i18n } = useTranslation();  
-    //console.log(i18n);
     
     // form activity statuses
     const [isLoading, setIsLoading] = useState(true);
@@ -79,9 +77,21 @@ function UtSdoh() {
         const finalValues = { ...values }; 
         
         for (const field of fields) {
-            if (finalValues[field.name] === undefined || finalValues[field.name] === '' || finalValues[field.name] === null) {
+            if (field.name !== 'sdohConsentHelp' &&  
+                field.name !== 'sdohConsentProgram' &&
+                finalValues[field.name] === undefined || finalValues[field.name] === '' || finalValues[field.name] === null)
+            {
                 finalValues[field.name] = 'I choose not to answer';
             }
+            else if (field.name === 'housingCondition' && Array.isArray(finalValues[field.name]) && finalValues[field.name].length === 0)
+            {
+                finalValues[field.name] = ['I choose not to answer'];
+            }
+            else if (field.name === 'sdohConsentHelp' || field.name === 'sdohConsentProgram') 
+                if (finalValues[field.name] === undefined || finalValues[field.name] === '' || finalValues[field.name] === null) 
+                {
+                  finalValues[field.name] = 'Does not apply';
+                }
         }
         
         if (consentComplete) {
@@ -105,28 +115,13 @@ function UtSdoh() {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                 //logging for security headers
-                const csp = response.headers.get('Content-Security-Policy');
-                const xfo = response.headers.get('X-Frame-Options');
-                console.log('Content-Security-Policy:', csp);
-                console.log('X-Frame-Options:', xfo);
-    
-                if (!csp || !xfo) {
-                    console.warn('Security headers are not set properly');
-                }
                 return response.json();       
             })
             .then((data) => {
-                //console.log(data);
-                console.log('formValues = ');
-                console.log(formValues);
-                console.log('values = ');
-                console.log(values);
-                //console.log('allValues = ',allValues);
+                //console.log(finalValues);
                 navigate('/successpage', { replace: true });
             })
             .catch(error => {
-                // Handle errors
                 //console.error(error);
                 navigate('/failedpage', { replace: true });
             });
@@ -190,7 +185,7 @@ function UtSdoh() {
                         SubmitButton={(props) => (
                             <SubmitButton {...props} className="mb-4" text="Next" />
                         )}
-                        showSubmit={true} // Always show submit for the main form
+                        showSubmit={true}
                     />
                 )}
 
