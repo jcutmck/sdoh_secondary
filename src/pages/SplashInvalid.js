@@ -7,7 +7,7 @@ const InvalidPage = () => {
   const navigate = useNavigate();
 
   const handleHome = () => {
-    navigate('/sdoh'); // Navigate to the home page
+    navigate('/');
   };
 
   return (

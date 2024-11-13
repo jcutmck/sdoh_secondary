@@ -12,42 +12,49 @@ const SuccessPage = () => {
   
   // setting t object for translation utility 
   const { t, i18n } = useTranslation();
-  
-  /*const handleClose = () => {
-    setIsClosing(true);
 
-    // Attempt to close the window directly
-    window.close();
-
-    // If direct close fails (due to browser restrictions), try a workaround
-    if (!isClosing) {
-      // Open a blank popup and immediately close it - this sometimes triggers a browser prompt
-      const popup = window.open('', '_self');
-      if (popup) popup.close();
-    }
-  };/
-
-  /*const handleHome = () => {
-    navigate('/'); // Navigate to the home page
-  };*/
-  //  <SubmitButton className="ml-4" text="Return Home" onClick={handleHome} />
-  // <SubmitButton className="ml-4" text="Close Window" onClick={handleClose} />
   return (
     <NavigationControl redirectPath="/">
       <div>
-        <h1 className="ml-4 font-bold">Forms submitted successfully, thank you!</h1>
+        <h1 className="ml-4 font-bold">{t('endthankyou')}</h1>
         <div className="help-resources"> 
-          <div className="h-4" /> {/* Blank row/space */}
+          <div className="h-4" /> 
           <p className="ml-4 max-w-[60em] break-words">{t('helpresource1')}</p>
-          <div className="h-4" /> {/* Another blank row/space */}
-          <p className="ml-4 max-w-[60em] break-words">{t('helpresource2')}</p>
-          <div className="h-4" /> {/* Another blank row/space */}
-          <p className="ml-4 max-w-[60em] break-words">{t('helpresource3')}</p>
-          <div className="h-4" /> {/* Another blank row/space */}
-          <p className="ml-4 max-w-[60em] break-words">{t('helpresource4')}</p>
-          <div className="h-4" /> {/* Another blank row/space */}
+
+          <div className="h-4" /> 
+          <p className="ml-4 max-w-[60em] break-words">{t('helpresource2')}{' '}
+            <a href="https://www.thehotline.org/" target="_blank" rel="noopener noreferrer"
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ color: 'blue', textDecoration: 'underline' }}
+            >
+              https://www.thehotline.org/
+            </a>
+          </p>
+          <div className="h-4" /> 
+          <p className="ml-4 max-w-[60em] break-words">{t('helpresource3')}{' '}
+            <a href="https://www.feedingamerica.org/find-your-local-foodbank" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ color: 'blue', textDecoration: 'underline' }}
+              >
+              https://www.feedingamerica.org/find-your-local-foodbank
+            </a>
+          
+          </p>
+          <div className="h-4" /> 
+          <p className="ml-4 max-w-[60em] break-words">{t('helpresource4')}{' '}
+            <a href="https://www.findhelp.org/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ color: 'blue', textDecoration: 'underline' }}
+              >
+              https://www.findhelp.org/
+            </a>
+          </p>
+          <div className="h-4" /> 
         </div>
-        <h1 className="ml-4 italic">You may now close this browser window.</h1>
+        <h1 className="ml-4 italic">{t('closebrowser')}</h1>
 
         
       </div>

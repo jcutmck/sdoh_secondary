@@ -7,7 +7,7 @@ const FailedPage = () => {
   const navigate = useNavigate();
 
   const handleHome = () => {
-    navigate('/'); // Navigate to the home page
+    navigate('/');
   };
 
   return (

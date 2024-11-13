@@ -16,34 +16,240 @@
   "sdohformname": "Social Determinants of Health Form",
   "introtext1": "Many living and working conditions can impact your health. At The University of Tennessee Medical Center, we're committed to better understanding our patients where they live, work, and play.",
   "introtext2": "By taking a moment to answer some questions, you'll contribute to the development of valuable resources that will benefit our patients in the future.",
+  "participation": {
+    "options": {
+      "I choose to participate": "I choose to participate",
+      "I choose not to participate": "I choose not to participate"
+    }
+  },
+  "I choose to participate": "I choose to participate",
+  "I choose not to participate": "I choose not to participate",
   "helpresource1": "If you are a victim of domestic violence (physical, verbal, or emotional), you are not alone.",
-  "helpresource2": "Call the Domestic Violence Hotline at 865-521-6336 or go online for more information https://www.thehotline.org/ for assistance and support.",
-  "helpresource3": "If you need assistance with food, shelter, transportation, or other health related social needs, you can contact your local food bank at: https://www.feedingamerica.org/find-your-local-foodbank.",
-  "helpresource4": "You may also find free or reduced-cost resources at: https://www.findhelp.org/.",
+  "helpresource2": "Call the Domestic Violence Hotline at 865-521-6336 or go online for more information, assistance and support at:",
+  "helpresource3": "If you need assistance with food, shelter, transportation, or other health related social needs, you can contact your local food bank at:",
+  "helpresource4": "You may also find free or reduced-cost resources at:",
+  "closebrowser": "You may now close this browser window.",
+  "endthankyou": "Forms submitted successfully, thank you!",
   "Please answer a few questions about your life.": "Please answer a few questions about your life.",
+  "Yes": "Yes",
+  "No": "No",
+  "I choose not to answer": "I choose not to answer",
+  "Bug Infestation": "Bug Infestation",
+  "Mold": "Mold",
+  "Lead Paint or Pipes": "Lead Paint or Pipes",
+  "Inadequate Heat": "Inadequate Heat",
+  "Oven or Stove not working": "Oven or Stove not working",
+  "No or not working smoke detectors": "No or not working smoke detectors",
+  "Water Leaks": "Water Leaks",
+  "None of the above": "None of the above",
+  "Often true": "Often true",
+  "Sometimes true": "Sometimes true",
+  "Never true": "Never true",
+  "Already shut off": "Already shut off",
+  "Never": "Never",
+  "Rarely": "Rarely",
+  "Sometimes": "Sometimes",
+  "Fairly often": "Fairly often",
+  "Frequently": "Frequently",
+  "Does not apply": "Does not apply",
+  "Active service": "Active service",
+  "Veteran/Honorably discharged": "Veteran/Honorably discharged",
+  "Veteran/Dishonorably discharged": "Veteran/Dishonorably discharged",  
+  "I agree": "I agree",
+  "I do not agree": "I do not agree",
   "Are you worried or concerned that in the next two months you may not have stable housing that you own, rent, or stay in as a part of a household?": "Are you worried or concerned that in the next two months you may not have stable housing that you own, rent, or stay in as a part of a household?",
+  "housingSecurity": {
+    "options": {
+      "Yes": "Yes",
+      "No": "No",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "Think about the place you live. Do you have problems with  any of the following? ": "Think about the place you live. Do you have problems with  any of the following? ",
+  "housingCondition": {
+    "options": {
+      "Bug Infestation": "Bug Infestation",
+      "Mold": "Mold",
+      "Lead Paint or Pipes": "Lead Paint or Pipes",
+      "Inadequate Heat": "Inadequate Heat",
+      "Oven or Stove not working": "Oven or Stove not working",
+      "No or not working smoke detectors": "No or not working smoke detectors",
+      "Water Leaks": "Water Leaks",
+      "None of the above": "None of the above",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "Within the past 12 months, have you worried that your food would run out before you had enough money to buy more?": "Within the past 12 months, have you worried that your food would run out before you had enough money to buy more?",
+  "foodSecurity": {
+    "options": {
+      "Often true": "Often true",
+      "Sometimes true": "Sometimes true",
+      "Never true": "Never true",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "Within the past 12 months, the food you bought did not last and you did not have money to get more.": "Within the past 12 months, the food you bought did not last and you did not have money to get more.",
+  "foodAccess": {
+    "options": {
+      "Often true": "Often true",
+      "Sometimes true": "Sometimes true",
+      "Never true": "Never true",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "Do you put off or neglect going to the doctor because of  distance or transportation?": "Do you put off or neglect going to the doctor because of  distance or transportation?",
+  "healthcareAccess": {
+    "options": {
+      "Yes": "Yes",
+      "No": "No",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "In the past 12 months has the electric, gas, oil, or water  company threatened to shut off services in your home?": "In the past 12 months has the electric, gas, oil, or water  company threatened to shut off services in your home?",
+  "utilitySecurity": {
+    "options": {
+      "Yes": "Yes",
+      "No": "No",
+      "Already shut off": "Already shut off",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "Do problems getting child care make it difficult for you to work or study?": "Do problems getting child care make it difficult for you to work or study?",
+  "childcareAccess": {
+    "options": {
+      "Yes": "Yes",
+      "No": "No",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "Do you have a job?": "Do you have a job?",
+  "occupationAccess": {
+    "options": {
+      "Yes": "Yes",
+      "No": "No",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "Do you have a high school diploma?": "Do you have a high school diploma?",
+  "educationAccess": {
+    "options": {
+      "Yes": "Yes",
+      "No": "No",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "How often does this describe you? I do not have enough money to pay my bills...": "How often does this describe you? I do not have enough money to pay my bills...",
+  "financialSecurity": {
+    "options": {
+      "Never": "Never",
+      "Rarely": "Rarely",
+      "Sometimes": "Sometimes",
+      "Fairly often": "Fairly often",
+      "Frequently": "Frequently",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "How often does anyone, including family, physically hurt you?": "How often does anyone, including family, physically hurt you?",
+  "physicalSecurity": {
+    "options": {
+      "Never": "Never",
+      "Rarely": "Rarely",
+      "Sometimes": "Sometimes",
+      "Fairly often": "Fairly often",
+      "Frequently": "Frequently",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "How often does anyone, including family, insult or talk down to you?": "How often does anyone, including family, insult or talk down to you?",
+  "emotionalSecurity": {
+    "options": {
+      "Never": "Never",
+      "Rarely": "Rarely",
+      "Sometimes": "Sometimes",
+      "Fairly often": "Fairly often",
+      "Frequently": "Frequently",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "How often does anyone, including family, threaten you with harm?": "How often does anyone, including family, threaten you with harm?",
+  "safetySecurity": {
+    "options": {
+      "Never": "Never",
+      "Rarely": "Rarely",
+      "Sometimes": "Sometimes",
+      "Fairly often": "Fairly often",
+      "Frequently": "Frequently",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "How often does anyone, including family, scream or curse at you?": "How often does anyone, including family, scream or curse at you?",
+  "wellbeingSecurity": {
+    "options": {
+      "Never": "Never",
+      "Rarely": "Rarely",
+      "Sometimes": "Sometimes",
+      "Fairly often": "Fairly often",
+      "Frequently": "Frequently",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "In the past year, have you spent more than 2 nights in a row in a jail, prison, detention center or juvenile correction facility?": "In the past year, have you spent more than 2 nights in a row in a jail, prison, detention center or juvenile correction facility?",
+  "legalStatus": {
+    "options": {
+      "Yes": "Yes",
+      "No": "No",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "Are you a refugee?": "Are you a refugee?",
+  "refugeSecurity": {
+    "options": {
+      "Yes": "Yes",
+      "No": "No",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "Military Status:": "Military Status:",
+  "militaryService": {
+    "options": {
+      "Does not apply": "Does not apply",
+      "Active service": "Active service",
+      "Veteran/Honorably discharged": "Veteran/Honorably discharged",
+      "Veteran/Dishonorably discharged": "Veteran/Dishonorably discharged",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "Would you like help with any of these needs?": "Would you like help with any of these needs?",
+  "requestHelp": {
+    "options": {
+      "YES": "YES",
+      "no": "no",
+      "I choose not to answer": "I choose not to answer"
+    }
+  },
   "I agree to let UT Medical Center and its affiliates share the information I give here with local groups to help find resources for me.": "I agree to let UT Medical Center and its affiliates share the information I give here with local groups to help find resources for me.",
+  "sdohConsentProgram": {
+    "options": {
+      "I agree": "I agree",
+      "I do not agree": "I do not agree",
+      "Does not apply": "Does not apply"
+    }
+  },
   "I agree to let UT Medical Center share the information I give here with its affiliates to better understand community needs.": "I agree to let UT Medical Center share the information I give here with its affiliates to better understand community needs.",
+  "sdohConsentHelp": {
+    "options": {
+      "I agree": "I agree",
+      "I do not agree": "I do not agree",
+      "Does not apply": "Does not apply"
+    }
+  },
   "First Name": "First Name",
   "Last Name": "Last Name",
   "Date of Birth": "Date of Birth",
   "Zip Code": "Zip Code",
-  "Select your address": "Select your address"
+  "Select your address": "Select your address",
+  "validationattempts": "Validation attempts remaining:",
+  "buttontextverify": "Verify Visit",
+  "buttontextsubmit": "Submit",
+  "Language": "Language"
 }

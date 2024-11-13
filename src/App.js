@@ -7,12 +7,9 @@ import ValidateUsr from './pages/ValidateUsr';
 import SuccessPage from './pages/SplashSuccess';
 import FailedPage from './pages/SplashFailed';
 import InvalidPage from './pages/SplashInvalid';
-//import WelcomeStart from './pages/WelcomeStart';
-//import VisitFormsCheck from './pages/VisitFormsCheck;
 import SDOHWelcome from './pages/WelcomeSDOH';
 import Layout from '../src/components/Layout';
 import createEmotionCache from '../src/components/EmotionCache'; // You'll need to create this file
-//<Route path="/" exact element={<SDOHWelcome />} />
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -25,7 +22,7 @@ function App({ emotionCache = clientSideEmotionCache }) {
           <Router>
             <Layout>
               <Routes>
-                <Route path="/" element={<Navigate to="/sdoh" replace />} /> {/* Redirect root to /sdoh */}
+                <Route path="/" element={<Navigate to="/sdoh" replace />} />
                 <Route path="/sdoh" element={<VerifyVisit />} />
                 <Route path="/validateusr" exact element={<ValidateUsr />} />
                 <Route path="/utform" exact element={<SdohForm />} />

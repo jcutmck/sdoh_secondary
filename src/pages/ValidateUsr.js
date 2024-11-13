@@ -15,9 +15,8 @@ function ValidateUsr() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // setting t object for translation utility 
     const { t, i18n } = useTranslation();  
-    //console.log(i18n);
+
 
     // Destructure the state, providing default values in case state is undefined
     const {isVerified, veriToken, addresses, verifyNonce } = location.state || {};
@@ -28,7 +27,6 @@ function ValidateUsr() {
     useEffect(() => {
         if (location.state && location.state.addresses) {
             //setAddresses(location.state.addresses);
-            // Create fields dynamically based on addresses
             const addressFields = [
                 new FormField(
                     'address',
@@ -41,8 +39,7 @@ function ValidateUsr() {
             setFields(addressFields);
             setIsLoading(false);
         } else {
-            // Handle case where addresses are not provided
-            navigate('/SdohForm'); // or wherever you want to redirect
+            navigate('/SdohForm');
         }
     }, [location, navigate]);
 
@@ -50,19 +47,15 @@ function ValidateUsr() {
 
     const handleSubmit  = async (values) => {
         const sessionId = localStorage.getItem('session_id');
-        console.log('Session ID:', sessionId);
-        console.log('Token:', veriToken);
-        console.log('verifyNonce:', verifyNonce);
         setIsSubmitting(true);
         const apiUrl = `${getApiUrl}/api/validate`;
-        //const apiUrl = `https://sdohtest.utmck.edu/api/validate`;
-        //console.log('API URL:', apiUrl);
+        /*
         console.log('Headers being sent:', {
             'Content-Type': 'application/json',
             'Session-ID': sessionId,
             'Verification-Token': veriToken,
             'X-CSP-Nonce': verifyNonce,
-          });
+          });*/
         try {
             const response = await fetch(apiUrl, {
                 method: 'POST',
@@ -73,7 +66,7 @@ function ValidateUsr() {
                     'X-CSP-Nonce': verifyNonce,
                 },
                 body: JSON.stringify(values),
-                credentials: 'include',  // Ensure cookies are included in the request
+                credentials: 'include',
             });
 
             if (!response.ok) {
@@ -88,11 +81,9 @@ function ValidateUsr() {
                 data.session_id !== sessionId) {
                     throw new Error('Validation failed or invalid session');
                 }
-            // Navigate to the success page
             navigate('/utform', { replace: true });    
         } catch(error) {
             console.error('Error:', error);
-            console.log("Failure on React Side");
             navigate('/validationfail', { replace: true });
         } finally {
             setIsSubmitting(false);
@@ -110,9 +101,9 @@ function ValidateUsr() {
                     fields={fields}
                     validationSchema={validationSchema}
                     SubmitButton={(props) => (
-                        <SubmitButton {...props} text="SUBMIT" />
+                        <SubmitButton {...props} text={t('buttontextsubmit')} />
                     )}
-                    showSubmit={true} // Always show submit for the validate form
+                    showSubmit={true} 
                 />
             ) : (
                     <p>Loading verification question...</p>

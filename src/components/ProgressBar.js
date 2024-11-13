@@ -5,11 +5,8 @@ import { useTranslation } from 'react-i18next';
 
 // Create a styled Stepper component to control its size
 const StyledStepper = styled(Stepper)(({ theme }) => ({
-  // Set the width to 66.66% (approximately 2/3)
   width: '66.66%',
-  // Ensure it remains responsive by setting maxWidth to 100%
   maxWidth: '100%',
-  // Center the Stepper horizontally
   margin: '0 auto',
 }));
 
@@ -17,11 +14,9 @@ function ProgressBar() {
   const location = useLocation();
   const [activeStep, setActiveStep] = useState(0);
     
-  // setting t object for translation utility 
     const { t } = useTranslation();
     
   useEffect(() => {
-    // Map the current path to the corresponding step
     switch (location.pathname) {
       case '/sdoh':
         setActiveStep(1);
@@ -42,7 +37,6 @@ function ProgressBar() {
 
   // Univ TN Orange
   const utOrange = '#F77F00'; 
-  //{label}
   
   return (
 

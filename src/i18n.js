@@ -1,9 +1,5 @@
 // src/i18n.js
 import i18next from 'i18next';
-//import LanguageDetector from 'i18next-browser-languagedetector';
-
-console.log(require('./locales/en/en.json'));
-console.log(require('./locales/es/es.json'));
 
 i18next
 //  .use(LanguageDetector)

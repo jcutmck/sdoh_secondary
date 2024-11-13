@@ -7,10 +7,9 @@ const SDOHWelcome = () => {
   const navigate = useNavigate();
 
   const handleHome = () => {
-    navigate('/'); // Navigate to the home page
+    navigate('/');
   };
 
-  console.log("FE-Ver: VERSION 1.25")
   return (
     <NavigationControl redirectPath="/">
       <div>
