@@ -22,24 +22,22 @@ import { useTranslation } from 'react-i18next';
         {({ isSubmitting, submitForm, setFieldValue, values }) => (
           <Form className="form-container">
             {fields.map((field, index) => {
-              // ___________________ Translate the field label:
               const fieldLabel = t(field.label); 
-
               // 2. Translate options (if the field has options):
               let options = field.options || []; 
               if (field.type === 'radio' || field.type === 'checkbox') {
                 options = options.map(option => ({
                   ...option,
-                  label: `${field.name}.options.${option.value}`
+                  label: field.name === 'address' //skip translate on these fields
+                    ? option.label 
+                    :t(`${field.name}.options.${option.value}`)
                 }));
               }          
-              
               // Ensure the field object has a type property
               if (!field || !field.type) {
                 console.error(`Field at index ${index} is missing required properties`, field);
                 return null;
               }
-            // DATE field config for form template
               if (field.type === 'date') {
                 return (
                   <FormikDateField
@@ -49,7 +47,6 @@ import { useTranslation } from 'react-i18next';
                   />
                 );
               } else if (field.type === 'radio') {
-              // RADIO BUTTON field config for form template
                 // Ensure the field has options property for radio type
                 if (!field.options) {
                   console.error(`Field at index ${index} of type 'radio' is missing 'options' property`, field);
@@ -68,7 +65,11 @@ import { useTranslation } from 'react-i18next';
                           key={optionIndex}
                           value={option.value}
                           control={<Radio disabled={isSubmitting} />}
-                          label={option.label}
+                          label={
+                            field.name === 'address'
+                              ? option.label
+                              : t(option.label)
+                          }
                           disabled={isSubmitting}
                         />
                       ))}
@@ -76,14 +77,13 @@ import { useTranslation } from 'react-i18next';
                   </FormControl>
                );
               } else if (field.type === 'checkbox') {
-              // CHECKBOX field config for form template
               if (!field.options.length) {
                 console.error(`Field at index ${index} of type 'checkbox' is missing 'options' property`, field);
                 return null;
               }
               return (
                 <FormControl key={index} component="fieldset">
-                  <FormLabel component="legend">{field.label}</FormLabel>
+                  <FormLabel component="legend">{fieldLabel}</FormLabel>
                   <FormGroup>
                     {field.options.map((option, optionIndex) => (
                           <Field
@@ -92,7 +92,7 @@ import { useTranslation } from 'react-i18next';
                             type="checkbox"
                             name={`housingCondition`}
                             value={option.value}
-                            Label={{ label: option.label }}
+                            Label={{ label: t(option.label) }}
                             disabled={isSubmitting}
                             onChange={() => {
                               const currentValues = values.housingCondition || [];
@@ -122,8 +122,8 @@ import { useTranslation } from 'react-i18next';
               );
             })}
         
-        {showSubmit && ( // Conditionally render the submit button
-          <div className="submit-button-container"> {/* Add a container for better styling */}   
+        {showSubmit && ( 
+          <div className="submit-button-container">
             {SubmitButton ? (
               <SubmitButton onClick={submitForm} className="form-button ml-4" text={buttonText} />
             ) : (

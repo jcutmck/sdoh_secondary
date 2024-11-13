@@ -15,7 +15,6 @@ function ValidateUsr() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // setting t object for translation utility 
     const { t, i18n } = useTranslation();  
     //console.log(i18n);
 
@@ -28,7 +27,6 @@ function ValidateUsr() {
     useEffect(() => {
         if (location.state && location.state.addresses) {
             //setAddresses(location.state.addresses);
-            // Create fields dynamically based on addresses
             const addressFields = [
                 new FormField(
                     'address',
@@ -42,7 +40,7 @@ function ValidateUsr() {
             setIsLoading(false);
         } else {
             // Handle case where addresses are not provided
-            navigate('/SdohForm'); // or wherever you want to redirect
+            navigate('/SdohForm');
         }
     }, [location, navigate]);
 
@@ -55,7 +53,6 @@ function ValidateUsr() {
         console.log('verifyNonce:', verifyNonce);
         setIsSubmitting(true);
         const apiUrl = `${getApiUrl}/api/validate`;
-        //const apiUrl = `https://sdohtest.utmck.edu/api/validate`;
         //console.log('API URL:', apiUrl);
         console.log('Headers being sent:', {
             'Content-Type': 'application/json',
@@ -73,7 +70,7 @@ function ValidateUsr() {
                     'X-CSP-Nonce': verifyNonce,
                 },
                 body: JSON.stringify(values),
-                credentials: 'include',  // Ensure cookies are included in the request
+                credentials: 'include',
             });
 
             if (!response.ok) {
@@ -88,7 +85,6 @@ function ValidateUsr() {
                 data.session_id !== sessionId) {
                     throw new Error('Validation failed or invalid session');
                 }
-            // Navigate to the success page
             navigate('/utform', { replace: true });    
         } catch(error) {
             console.error('Error:', error);
@@ -110,9 +106,9 @@ function ValidateUsr() {
                     fields={fields}
                     validationSchema={validationSchema}
                     SubmitButton={(props) => (
-                        <SubmitButton {...props} text="SUBMIT" />
+                        <SubmitButton {...props} text={t('buttontextsubmit')} />
                     )}
-                    showSubmit={true} // Always show submit for the validate form
+                    showSubmit={true} 
                 />
             ) : (
                     <p>Loading verification question...</p>

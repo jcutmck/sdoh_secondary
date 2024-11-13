@@ -8,7 +8,7 @@ import Select from '@mui/material/Select';
 
 
 function LanguageSwitcher() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const handleLanguageChange = (event) => {
     i18n.changeLanguage(event.target.value);
@@ -16,7 +16,7 @@ function LanguageSwitcher() {
 
   return (
     <FormControl variant="filled" sx={{ m: '1em', minWidth: '10em' }}>
-      <InputLabel id="language-select-label">Language</InputLabel>
+      <InputLabel id="language-select-label">{t('Language')}</InputLabel>
       <Select
         labelId="language-select-label"
         id="language-select"   
@@ -26,7 +26,6 @@ function LanguageSwitcher() {
       >
         <MenuItem value="en">English</MenuItem>
         <MenuItem value="es">Español</MenuItem>
-        {/* Add more MenuItem components for other languages */}
       </Select>
     </FormControl>
   );

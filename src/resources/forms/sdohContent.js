@@ -251,7 +251,7 @@ class FormField {
         [
             { value: 'YES', label: 'Yes' },
             { value: 'no', label: 'No' },
-            { value: 'I choose not to participate', label: 'I choose not to participate' },
+            { value: 'I choose not to answer', label: 'I choose not to answer' },
         ]
     ),
     new FormField(

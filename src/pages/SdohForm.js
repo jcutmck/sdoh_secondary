@@ -4,8 +4,6 @@ import { SubmitButton } from '../components/Button';
 import ReusableForm from '../components/FormTemplate';
 import { initialValues, fields } from '../resources/forms/sdohContent';
 import NavigationControl from '../components/NavigationControl';
-//import ProgressBar from '../components/ProgressBar';
-//import LanguageSwitcher from '../components/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
 
 
@@ -25,12 +23,11 @@ function UtSdoh() {
     const [formValues, setFormValues] = useState({});
 
     // form section control variables
-    const [userParticipation, setUserParticipation] = useState(null); // Store initial participation value 
+    const [userParticipation, setUserParticipation] = useState(null);
     const [showForm, setShowForm] = useState(false);
-    const [consentComplete, setConsentComplete] = useState(null); // Store form main content continue button
-    const [presentConsent, setPresentConsent] = useState(null); // Store form main content continue button
+    const [consentComplete, setConsentComplete] = useState(null); 
+    const [presentConsent, setPresentConsent] = useState(null); 
 
-    // Dynamic API URL Variable by Environment
     const getApiUrl = process.env.REACT_APP_URL;
 
 
@@ -52,15 +49,13 @@ function UtSdoh() {
                     'Content-Type': 'application/json',
                     'Session-ID': sessionId,
                 },
-                body: JSON.stringify({ participation: values.participation }), // Send only participation value
+                body: JSON.stringify({ participation: values.participation }),
                 credentials: 'include',
             })
             .then(response => { 
-                // ... your response handling code ... 
                 navigate('/successpage', { replace: true });
             })
             .catch(error => { 
-                // ... your error handling code ... 
                 navigate('/failedpage', { replace: true });
             });
         } else {
@@ -76,9 +71,18 @@ function UtSdoh() {
     // Get session id from dom -> setIsSubmitting screen freeze -> set dynamic API URL ->
     // Combine formValues and participation answer into one value = allValues
     // 3rd -- if not end state yet, setShowForm = true
-    // 
+
     const handleSubmit  = (values) => {
         setFormValues({ ...formValues, ...values, participation: userParticipation }); // Accumulate values from each stage
+        
+        // update null values
+        const finalValues = { ...values }; 
+        
+        for (const field of fields) {
+            if (finalValues[field.name] === undefined || finalValues[field.name] === '' || finalValues[field.name] === null) {
+                finalValues[field.name] = 'I choose not to answer';
+            }
+        }
         
         if (consentComplete) {
             // If showing final questions, submit the data
@@ -91,28 +95,26 @@ function UtSdoh() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Session-ID': sessionId, // Include the session ID in the headers
+                    'Session-ID': sessionId,
                 },
-                body: JSON.stringify(values),
-                credentials: 'include',  // Ensure cookies are included in the request
+                body: JSON.stringify(finalValues),
+                credentials: 'include',
             })
-            // the .then, .catch below all handle/react to responses to the JSON fetch() request
+
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                 // Logging to check security headers only
+                 //logging for security headers
                 const csp = response.headers.get('Content-Security-Policy');
                 const xfo = response.headers.get('X-Frame-Options');
                 console.log('Content-Security-Policy:', csp);
                 console.log('X-Frame-Options:', xfo);
     
-                // You can add some logic here to handle cases where headers are missing
                 if (!csp || !xfo) {
                     console.warn('Security headers are not set properly');
-                    //  You might want to log this or handle it in some way
                 }
-                return response.json(); // Parse the response body as JSON           
+                return response.json();       
             })
             .then((data) => {
                 //console.log(data);
@@ -121,7 +123,6 @@ function UtSdoh() {
                 console.log('values = ');
                 console.log(values);
                 //console.log('allValues = ',allValues);
-                // Navigate to the success page
                 navigate('/successpage', { replace: true });
             })
             .catch(error => {
@@ -133,7 +134,6 @@ function UtSdoh() {
         } else {
             // If not showing consent questions, move to consent questions page
             setConsentComplete(true);
-             // Set consentComplete to true HERE
         }
     };
 
@@ -158,25 +158,26 @@ function UtSdoh() {
                 {!showForm && ( // Show participation question first
                     <>
                         <div className="instructions"> 
-                            <div className="h-4" /> {/* Blank row/space */}
+                            <div className="h-4" />
                             <p className="ml-4 max-w-[60em] break-words">{t('introtext1')}</p>
-                            <div className="h-4" /> {/* Another blank row/space */}
+                            <div className="h-4" />
                             <p className="ml-4 max-w-[60em] break-words">{t('introtext2')}</p>
-                            <div className="h-4" /> {/* Another blank row/space */}
+                            <div className="h-4" />
                         </div>
                         <ReusableForm
                             initialValues={initialValues}
-                            onSubmit={handleParticipateSubmit} // Use separate submit handler
+                            onSubmit={handleParticipateSubmit}
                             fields={fields.filter(field => field.name === 'participation')}
                             SubmitButton={(props) => (
                                 <SubmitButton {...props} className="mb-4" text="Next" />
                             )}
-                            showSubmit={true} // Always show submit for participate section
+                            showSubmit={true}
                         />
                     </>
                 )}
                 
-                {showForm && !consentComplete && (// userParticipation=Yes & Consent Not Complete show Main sdoh questions section
+                {showForm && !consentComplete && (
+                // userParticipation=Yes & Consent Not Complete show Main sdoh questions section
                     <ReusableForm
                         initialValues={initialValues}
                         onSubmit={handleSubmit}
@@ -204,7 +205,7 @@ function UtSdoh() {
                             field.name === 'sdohConsentHelp'
                         )}
                         SubmitButton={(props) => (
-                            <SubmitButton {...props} className="mb-4" text="SUBMIT" />
+                            <SubmitButton {...props} className="mb-4" text={t('buttontextsubmit')} />
                         )}
                         showSubmit={true}
                     />

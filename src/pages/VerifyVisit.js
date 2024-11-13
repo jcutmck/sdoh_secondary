@@ -24,14 +24,13 @@ function VerifyVisit() {
     // setting t object for translation utility 
     const { t, i18n } = useTranslation();
 
-    // Determine base API URL dynamically
+    // Dynamic API URL by env
     const getApiUrl = process.env.REACT_APP_URL;
     
 
     //remove cached session_id if reload without being verified
     useEffect(() => {
         if (!isVerified) {
-            // Clear session ID when the component mounts and isVerified is false
             localStorage.removeItem('session_id');
             setIsNew(true);
             setAttempts('3');
@@ -57,10 +56,9 @@ function VerifyVisit() {
                 headers: {
                     'Content-Type': 'application/json',
                     'Session-ID': sessionId,  
-                    //'X-CSP-Nonce': cspNonce // Use the nonce you stored in your app's state
                 },
                 body: JSON.stringify(formattedValues),
-                credentials: 'include'  // Ensure cookies are included in the request
+                credentials: 'include'
             });
 
             const data = await response.json();
@@ -77,24 +75,22 @@ function VerifyVisit() {
                 } else {
                     console.warn('No nonce received in the verify response');
                 }
-                setAddresses(data.addresses); // Store addresses
+                setAddresses(data.addresses);
                 
-                // Check for security headers
+                // security headers
                 const csp = response.headers.get('Content-Security-Policy');
                 const xfo = response.headers.get('X-Frame-Options');
                 console.log('Content-Security-Policy:', csp);
                 console.log('X-Frame-Options:', xfo);
 
-                // You can add some logic here to handle cases where headers are missing
                 if (!csp || !xfo) {
                     console.warn('Security headers are not set properly');
-                    //  You might want to log this or handle it in some way
                 }
             } else {
                 setIsVerified(false);
                 if (data.message === 'NO VISITS FOUND') {
-                    //console.log('Remaining attempts:', data.tries); // Debug log
-                    setAttempts(data.tries); // Update attempts based on backend response
+                    //console.log('Remaining attempts:', data.tries);
+                    setAttempts(data.tries);
                     setError('Visit not found. Please try again.'); 
                 } else {
                     throw new Error(data.message || `HTTP error! status: ${response.status}`);
@@ -113,8 +109,8 @@ function VerifyVisit() {
     };
 
     useEffect(() => {
-        //console.log('Attempts remaining:', attempts); // Log the attempts to see if it's updating
-    }, [attempts]); // Add useEffect to monitor changes to attempts
+        //console.log('Attempts remaining:', attempts);
+    }, [attempts]);
 
     useEffect(() => {
         window.addEventListener('load', () => {
@@ -127,7 +123,6 @@ function VerifyVisit() {
 
     useEffect(() => {
         if (isVerified && verificationToken && addresses.length > 0) {
-            //console.log('Navigating to /validateusr');
             navigate('/validateusr', { 
                 state: { 
                     isVerified: isVerified,
@@ -141,23 +136,23 @@ function VerifyVisit() {
         }
     }, [isVerified, addresses, navigate, verificationToken, cspNonce]);
     
-    console.log("FE-Ver: VERSION 1.39.7")
+    console.log("V1.4.0")
     return (
         <NavigationControl redirectPath="/">
             <div>
 
                 <h1 className="ml-4 font-bold" >{t('ptvalidtitle')}</h1>
                 {error && <div className="error ml-4">{error}</div>}
-                {attempts > 0 && attempts < 3 && <div className="tries ml-4 ">Validation attempts remaining: {attempts}</div>}
+                {attempts > 0 && attempts < 3 && <div className="tries ml-4 ">{t('validationattempts')} {attempts}</div>}
                 <ReusableForm
                     initialValues={initialValues}
                     onSubmit={handleSubmit}
                     fields={fields}
                     validationSchema={validationSchema}
                     SubmitButton={(props) => (
-                        <SubmitButton {...props} text="Verify Visit" />
+                        <SubmitButton {...props} text={t('buttontextverify')} />
                     )}
-                    showSubmit={true} // Always show submit for the verify form
+                    showSubmit={true}
                 />
             </div>
         </NavigationControl>

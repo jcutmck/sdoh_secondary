@@ -16,34 +16,238 @@
   "sdohformname": "Herramienta de Evaluación de Necesidades Sociales",
   "introtext1": "Muchas condiciones de vida y de trabajo pueden afectar su salud. En el Centro Médico de la Universidad de Tennessee, estamos comprometidos a comprender mejor a nuestros pacientes, dónde viven, trabajan y juegan.",
   "introtext2": "Al tomarse un momento para responder algunas preguntas, contribuirá al desarrollo de recursos valiosos que beneficiarán a nuestros pacientes en el futuro.",
+  "participation": {
+    "options": {
+      "I choose to participate": "elijo participar",
+      "I choose not to participate": "elijo no participar"
+    }
+  },
+  "I choose to participate": "elijo participar",
+  "I choose not to participate": "elijo no participar",
   "helpresource1": "Si es víctima de violencia doméstica (física, verbal o emocional), no está sola.",
   "helpresource2": "Llame a la línea directa de violencia doméstica al 865-521-6336 o conéctese en línea para obtener más información https://www.thehotline.org/ para obtener asistencia y apoyo.",
   "helpresource3": "Si necesita ayuda con comida, refugio, transporte u otras necesidades sociales relacionadas con la salud, puede comunicarse con su banco de alimentos local en: https://www.feedingamerica.org/find-your-local-foodbank.",
   "helpresource4": "También puede encontrar recursos gratuitos o de costo reducido en: https://www.findhelp.org/.",
   "Please answer a few questions about your life.": "Por favor, responda algunas preguntas sobre su vida.",
+  "Yes": "Si",
+  "No": "No",
+  "I choose not to answer": "elijo no responder",
+  "Bug Infestation": "Infestación de insectos",
+  "Mold": "Moho",
+  "Lead Paint or Pipes": "Pintura o tuberías con plomo",
+  "Inadequate Heat": "Calor inadecuado",
+  "Oven or Stove not working": "El horno o la estufa no funcionan",
+  "No or not working smoke detectors": "Detectores de humo inexistentes o que no funcionan",
+  "Water Leaks": "Fugas de agua",
+  "None of the above": "Ninguno de los anteriores",
+  "Often true": "A menudo es cierto",
+  "Sometimes true": "A veces es cierto",
+  "Never true": "Nunca es cierto",
+  "Already shut off": "ya apagado",
+  "Never": "Nunca",
+  "Rarely": "Casi nunca",
+  "Sometimes": "A veces",
+  "Fairly often": "Con bastante frecuencia",
+  "Frequently": "Frecuentemente",
+  "Does not apply": "No aplica",
+  "Active service": "Servicio activo",
+  "Veteran/Honorably discharged": "Veterano/licenciado honorablemente",
+  "Veteran/Dishonorably discharged": "Veterano/dado de baja deshonrosamente",    
+  "I agree": "Estoy de acuerdo",
+  "I do not agree": "no estoy de acuerdo",
   "Are you worried or concerned that in the next two months you may not have stable housing that you own, rent, or stay in as a part of a household?": "¿Está preocupado o inquieto por la posibilidad de que en los próximos dos meses no pueda disponer de una vivienda estable propia, alquilada o en la que viva como parte de un hogar?",
+  "housingSecurity": {
+    "options": {
+      "Yes": "Si",
+      "No": "No",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "Think about the place you live. Do you have problems with  any of the following? ": "Piense en el lugar donde vive. ¿Tiene problemas con alguno de los siguientes? ",
+  "housingCondition": {
+    "options": {
+      "Bug Infestation": "Infestación de insectos",
+      "Mold": "Moho",
+      "Lead Paint or Pipes": "Pintura o tuberías con plomo",
+      "Inadequate Heat": "Calor inadecuado",
+      "Oven or Stove not working": "El horno o la estufa no funcionan",
+      "No or not working smoke detectors": "Detectores de humo inexistentes o que no funcionan",
+      "Water Leaks": "Fugas de agua",
+      "None of the above": "Ninguno de los anteriores",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "Within the past 12 months, have you worried that your food would run out before you had enough money to buy more?": "En los últimos 12 meses, ¿le preocupaba que su comida se acabara antes de tener dinero para comprar más?",
+  "foodSecurity": {
+    "options": {
+      "Often true": "A menudo es cierto",
+      "Sometimes true": "A veces es cierto",
+      "Never true": "Nunca es cierto",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "Within the past 12 months, the food you bought did not last and you did not have money to get more.": "En los últimos 12 meses, la comida que compró no le duró y no tuvo dinero para conseguir más.",
+  "foodAccess": {
+    "options": {
+      "Often true": "A menudo es cierto",
+      "Sometimes true": "A veces es cierto",
+      "Never true": "Nunca es cierto",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "Do you put off or neglect going to the doctor because of  distance or transportation?": "¿Pospone o descuida ir al médico debido a la distancia o el transporte?",
+  "healthcareAccess": {
+    "options": {
+      "Yes": "Si",
+      "No": "No",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "In the past 12 months has the electric, gas, oil, or water  company threatened to shut off services in your home?": "En los últimos 12 meses, ¿la compañía de electricidad, gas, petróleo o agua ha amenazado con cortar los servicios en su hogar?",
+  "utilitySecurity": {
+    "options": {
+      "Yes": "Si",
+      "No": "No",
+      "Already shut off": "ya apagado",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "Do problems getting child care make it difficult for you to work or study?": "¿Los problemas para conseguir guarderías le dificultan trabajar o estudiar?",
+  "childcareAccess": {
+    "options": {
+      "Yes": "Si",
+      "No": "No",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "Do you have a job?": "¿Tiene trabajo?",
+  "occupationAccess": {
+    "options": {
+      "Yes": "Si",
+      "No": "No",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "Do you have a high school diploma?": "¿Tienes un título de secundaria/bachillerato?",
+  "educationAccess": {
+    "options": {
+      "Yes": "Si",
+      "No": "No",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "How often does this describe you? I do not have enough money to pay my bills...": "¿Con qué frecuencia esto lo describe? No tengo suficiente dinero para pagar mis facturas...",
+  "financialSecurity": {
+    "options": {
+      "Never": "Nunca",
+      "Rarely": "Casi nunca",
+      "Sometimes": "A veces",
+      "Fairly often": "Con bastante frecuencia",
+      "Frequently": "Frecuentemente",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "How often does anyone, including family, physically hurt you?": "¿Con qué frecuencia alguien, incluida la familia, le lastima físicamente?",
+  "physicalSecurity": {
+    "options": {
+      "Never": "Nunca",
+      "Rarely": "Casi nunca",
+      "Sometimes": "A veces",
+      "Fairly often": "Con bastante frecuencia",
+      "Frequently": "Frecuentemente",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "How often does anyone, including family, insult or talk down to you?": "¿Con qué frecuencia alguien, incluida la familia, le insulta o le habla con desprecio?",
+  "emotionalSecurity": {
+    "options": {
+      "Never": "Nunca",
+      "Rarely": "Casi nunca",
+      "Sometimes": "A veces",
+      "Fairly often": "Con bastante frecuencia",
+      "Frequently": "Frecuentemente",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "How often does anyone, including family, threaten you with harm?": "¿Con qué frecuencia alguien, incluida la familia, le amenaza con hacerle daño?",
+  "safetySecurity": {
+    "options": {
+      "Never": "Nunca",
+      "Rarely": "Casi nunca",
+      "Sometimes": "A veces",
+      "Fairly often": "Con bastante frecuencia",
+      "Frequently": "Frecuentemente",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "How often does anyone, including family, scream or curse at you?": "¿Con qué frecuencia alguien, incluida la familia, le grita o le maldice?",
+  "wellbeingSecurity": {
+    "options": {
+      "Never": "Nunca",
+      "Rarely": "Casi nunca",
+      "Sometimes": "A veces",
+      "Fairly often": "Con bastante frecuencia",
+      "Frequently": "Frecuentemente",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "In the past year, have you spent more than 2 nights in a row in a jail, prison, detention center or juvenile correction facility?": "En el último año, ¿ha pasado más de 2 noches seguidas en la cárcel, prisión, centro de detención o centro correccional juvenil?",
+  "legalStatus": {
+    "options": {
+      "Yes": "Si",
+      "No": "No",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "Are you a refugee?": "¿Es usted refugiado/a?",
+  "refugeSecurity": {
+    "options": {
+      "Yes": "Si",
+      "No": "No",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "Military Status:": "Estatus Militar:",
+  "militaryService": {
+    "options": {
+      "Does not apply": "No aplica",
+      "Active service": "Servicio activo",
+      "Veteran/Honorably discharged": "Veterano/licenciado honorablemente",
+      "Veteran/Dishonorably discharged": "Veterano/dado de baja deshonrosamente",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "Would you like help with any of these needs?": "¿Desea ayuda con alguna de estas necesidades?",
+  "requestHelp": {
+    "options": {
+      "YES": "Si",
+      "no": "No",
+      "I choose not to answer": "elijo no responder"
+    }
+  },
   "I agree to let UT Medical Center and its affiliates share the information I give here with local groups to help find resources for me.": "Acepto permitir que UT Medical Center y sus afiliados compartan la información que proporciono aquí con grupos locales para ayudarme a encontrar recursos para mí.",
+  "sdohConsentProgram": {
+    "options": {
+      "I agree": "Estoy de acuerdo",
+      "I do not agree": "no estoy de acuerdo",
+      "Does not apply": "No aplica"
+    }
+  },
   "I agree to let UT Medical Center share the information I give here with its affiliates to better understand community needs.": "Acepto permitir que UT Medical Center comparta la información que proporciono aquí con sus afiliados para comprender mejor las necesidades de la comunidad.",
+  "sdohConsentHelp": {
+    "options": {
+      "I agree": "Estoy de acuerdo",
+      "I do not agree": "no estoy de acuerdo",
+      "Does not apply": "No aplica"
+    }
+  },
   "First Name": "Nombre de pila",
   "Last Name": "Apellido",
   "Date of Birth": "Fecha de nacimiento",
   "Zip Code": "Código postal",
-  "Select your address": "Selecciona tu dirección"
+  "Select your address": "Selecciona tu dirección",
+  "validationattempts": "Intentos de validación restantes:",
+  "buttontextverify": "Verificar visita",
+  "buttontextsubmit": "Entregar",
+  "Language": "Idioma"
 }
